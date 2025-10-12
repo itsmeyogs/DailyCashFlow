@@ -27,8 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         observeSession()
-
-
+        onClickLogOut()
 
 
     }
@@ -39,7 +38,20 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
+            }else{
+                showNameUser(it.name)
             }
+        }
+    }
+
+
+    private fun showNameUser(name:String){
+        binding.tvHello.text = getString(R.string.hello_main, name)
+    }
+
+    private fun onClickLogOut(){
+        binding.btnLogOut.setOnClickListener {
+            viewModel.removeSession()
         }
     }
 
