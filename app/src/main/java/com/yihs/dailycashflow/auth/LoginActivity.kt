@@ -1,5 +1,6 @@
 package com.yihs.dailycashflow.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -35,7 +36,10 @@ class LoginActivity : AppCompatActivity() {
                 btnLogin.visibility = View.INVISIBLE
             }
 
-
+            btnRegisterNow.setOnClickListener {
+                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+                startActivity(intent)
+            }
         }
 
 
