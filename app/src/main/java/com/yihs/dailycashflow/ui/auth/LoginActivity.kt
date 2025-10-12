@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.databinding.ActivityLoginBinding
-import com.yihs.dailycashflow.ui.MainActivity
+import com.yihs.dailycashflow.ui.main.MainActivity
 import com.yihs.dailycashflow.utils.Resource
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,35 +31,23 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        binding.apply {
-            btnForgetPassword.setOnClickListener {
-                onClickForgetPassword()
-            }
-
-            btnLogin.setOnClickListener {
-                validateCredential()
-            }
-
-            btnRegisterNow.setOnClickListener {
-                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-                startActivity(intent)
-            }
-        }
-
-
+        validateCredential()
         observeLoginState()
-
+        onClickForgetPassword()
+        onClickRegisterNow()
 
     }
 
     private fun validateCredential(){
-        val email = binding.editTextEmail.text.toString().trim()
-        val password = binding.editTextPassword.text.toString().trim()
+        binding.btnLogin.setOnClickListener {
+            val email = binding.editTextEmail.text.toString().trim()
+            val password = binding.editTextPassword.text.toString().trim()
 
-        if(email.isNotEmpty() && password.isNotEmpty()){
-            viewModel.login(email, password)
-        }else{
-            showSnackBar("Please fill all fields")
+            if(email.isNotEmpty() && password.isNotEmpty()){
+                viewModel.login(email, password)
+            }else{
+                showSnackBar("Please fill all fields")
+            }
         }
     }
 
@@ -69,44 +57,54 @@ class LoginActivity : AppCompatActivity() {
             viewModel.loginState.collect { resource ->
                 when(resource){
                     is Resource.Idle -> {
-                        binding.apply {
-                            loadingIndicator.visibility = View.INVISIBLE
-                            btnLogin.visibility = View.VISIBLE
-                        }
+                        showLoading(false)
                     }
                     is Resource.Loading -> {
-                        binding.apply {
-                            loadingIndicator.visibility = View.VISIBLE
-                            btnLogin.visibility = View.INVISIBLE
-                        }
+                        showLoading(true)
                     }
                     is Resource.Success -> {
-                        binding.apply {
-                            loadingIndicator.visibility = View.INVISIBLE
-                            btnLogin.visibility = View.VISIBLE
-                        }
-                        viewModel.saveToken(resource.data.token!!)
+                        showLoading(false)
+                        //save session
+                        viewModel.saveSession(resource.data)
+
+                        //move to main activity
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
                     is Resource.Error -> {
-                        binding.apply {
-                            loadingIndicator.visibility = View.INVISIBLE
-                            btnLogin.visibility = View.VISIBLE
-                        }
-                        val message = resource.message
-
-                        showSnackBar(message)
+                        showLoading(false)
+                        //show message
+                        showSnackBar(resource.message)
                     }
                 }
             }
         }
     }
 
-
     private fun onClickForgetPassword(){
-        showSnackBar("Coming Soon")
+        binding.btnForgetPassword.setOnClickListener {
+            showSnackBar("Coming Soon")
+        }
+    }
+
+    private fun onClickRegisterNow(){
+        binding.btnRegisterNow.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun showLoading(isShow: Boolean = false){
+        binding.apply {
+            if(isShow){
+                loadingIndicator.visibility = View.VISIBLE
+                btnLogin.visibility = View.INVISIBLE
+            }else{
+                loadingIndicator.visibility = View.INVISIBLE
+                btnLogin.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun showSnackBar(message: String){

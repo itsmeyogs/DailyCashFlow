@@ -7,13 +7,24 @@ data class LoginResponse(
 	val message: String,
 
 	@field:SerializedName("tokenType")
-	val tokenType: String? = null,
+	val tokenType: String,
 
 	@field:SerializedName("token")
-	val token: String? = null,
+	val token: String,
 
 	@field:SerializedName("user")
-	val user: UserResponse? = null,
+	val user: UserResponse,
+)
+
+data class UserResponse(
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("email")
+	val email: String
 )
 
 

@@ -3,6 +3,7 @@ package com.yihs.dailycashflow.di
 import com.yihs.dailycashflow.BuildConfig
 import com.yihs.dailycashflow.data.preferences.UserPreference
 import com.yihs.dailycashflow.data.remote.ApiService
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -25,13 +26,13 @@ val networkModule = module {
     single<Interceptor> {
         Interceptor{
             val originalRequest = it.request()
-            val token = runBlocking { get<UserPreference>().getToken() }
+            val session = runBlocking { get<UserPreference>().getSession().first() }
             val newRequest = originalRequest.newBuilder()
                 .addHeader("Accept", "application/json")
                 .addHeader("Content-Type", "application/json")
 
-            if(!token.isNullOrEmpty()){
-                newRequest.addHeader("Authorization", "Bearer $token")
+            if(session.token != "" || session.token.isNotEmpty()){
+                newRequest.addHeader("Authorization", "Bearer ${session.token}")
             }
 
             it.proceed(newRequest.build())
