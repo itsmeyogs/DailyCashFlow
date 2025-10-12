@@ -6,9 +6,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.databinding.ActivityMainBinding
 import com.yihs.dailycashflow.ui.auth.LoginActivity
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +19,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        lifecycleScope.launch {
+            viewModel.getSession().collect {
+                if(it.token.isEmpty() || it.token == ""){
+                    val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else{
+                    setUpUI()
+                    showNameUser(it.name)
+                    onClickLogOut()
+                }
+            }
+        }
+
+
+        setUpUI()
+        onClickLogOut()
+
+
+    }
+
+    private fun setUpUI(){
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -24,23 +50,6 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-
-        observeSession()
-        onClickLogOut()
-
-
-    }
-
-    private fun observeSession(){
-        viewModel.getSession().observe(this@MainActivity){
-            if(it.token.isEmpty() || it.token == ""){
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }else{
-                showNameUser(it.name)
-            }
         }
     }
 

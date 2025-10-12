@@ -9,6 +9,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.yihs.dailycashflow.data.model.LoginResponse
 import com.yihs.dailycashflow.data.model.User
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 val Context.dataStore : DataStore<Preferences> by preferencesDataStore(name = "session")
