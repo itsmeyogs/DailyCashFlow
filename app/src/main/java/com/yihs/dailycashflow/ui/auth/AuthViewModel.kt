@@ -20,9 +20,12 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
     fun login(email: String, password: String){
         viewModelScope.launch {
             repository.login(email, password).collect {
-                _loginState.value = it
+                _loginState.value = Resource.Loading
                 if(it is Resource.Success){
                     repository.saveSession(it.data)
+                    _loginState.value = it
+                }else{
+                    _loginState.value = it
                 }
             }
         }
