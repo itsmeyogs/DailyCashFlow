@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.databinding.ActivityLoginBinding
 import com.yihs.dailycashflow.ui.main.MainActivity
 import com.yihs.dailycashflow.utils.Resource
+import com.yihs.dailycashflow.utils.showSnackBar
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -107,8 +107,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun showSnackBar(message: String){
-        val snackBar = Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT)
-        snackBar.show()
-    }
 }
