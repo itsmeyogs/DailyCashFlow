@@ -64,9 +64,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                     is Resource.Success -> {
                         showLoading(false)
-                        //save session
-                        viewModel.saveSession(resource.data)
-
                         //move to main activity
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
