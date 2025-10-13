@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yihs.dailycashflow.data.model.LoginResponse
 import com.yihs.dailycashflow.data.model.RegisterResponse
+import com.yihs.dailycashflow.data.model.User
 import com.yihs.dailycashflow.repository.Repository
 import com.yihs.dailycashflow.utils.Resource
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,6 +18,10 @@ class AuthViewModel(private val repository: Repository) : ViewModel() {
 
     private val _registerState = MutableStateFlow<Resource<RegisterResponse>>(Resource.Idle)
     val registerState : StateFlow<Resource<RegisterResponse>> = _registerState
+
+    fun getSession(): Flow<User> {
+        return repository.getSession()
+    }
 
     fun login(email: String, password: String){
         viewModelScope.launch {
