@@ -1,16 +1,22 @@
 package com.yihs.dailycashflow.ui.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.databinding.FragmentProfileBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel : ProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,7 +29,46 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showNameUser()
+        onClickLogOut()
+
+
     }
+
+
+    private fun showNameUser(){
+        viewModel.getUser().observe(viewLifecycleOwner){
+            binding.tvName.text = getString(R.string.hello_user, it.name)
+        }
+    }
+
+    private fun onClickLogOut(){
+        binding.btnLogOut.setOnClickListener {
+            lifecycleScope.launch {
+                showLoading(true)
+                delay(2000)
+                showLoading(false)
+                viewModel.removeSession()
+            }
+
+
+        }
+    }
+
+
+    private fun showLoading(isShow: Boolean = false){
+        binding.apply {
+            if(isShow){
+                loadingIndicator.visibility = View.VISIBLE
+                btnLogOut.visibility = View.INVISIBLE
+            }else{
+                loadingIndicator.visibility = View.INVISIBLE
+                btnLogOut.visibility = View.VISIBLE
+            }
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

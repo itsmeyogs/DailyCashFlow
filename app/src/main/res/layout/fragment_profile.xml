@@ -7,12 +7,50 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/profile"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/hello_user"
+        android:textSize="16sp"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_marginBottom="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_log_out"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/log_out"
+        app:cornerRadius="8dp"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:indicatorSize="30dp"
+        android:indeterminate="true"
+        app:indicatorColor="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="@id/btn_log_out"
+        app:layout_constraintEnd_toEndOf="@id/btn_log_out"
+        app:layout_constraintTop_toTopOf="@id/btn_log_out"
+        app:layout_constraintBottom_toBottomOf="@id/btn_log_out"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
