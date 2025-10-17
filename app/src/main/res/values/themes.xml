@@ -6,12 +6,21 @@
 
         <item name="android:colorBackground">@color/colorBackground</item>
 
-        <item name="backgroundColorCardRemainingBalanceGradientStart">@color/background_card_remaining_balance_gradient_start</item>
-        <item name="backgroundColorCardRemainingBalanceGradientEnd">@color/background_card_remaining_balance_gradient_end</item>
-        <item name="backgroundColorIconCardRemainingBalance">@color/background_color_icon_card_remaining_balance</item>
+        <!-- card  remaining balance      -->
+        <item name="backgroundColorCardRemainingBalanceGradientStart">@color/background_color_card_remaining_balance_gradient_start</item>
+        <item name="backgroundColorCardRemainingBalanceGradientEnd">@color/background_color_card_remaining_balance_gradient_end</item>
+        <item name="colorIconCardRemainingBalance">@color/color_icon_card_remaining_balance</item>
         <item name="colorTitleCardRemainingBalance">@color/color_title_remaining_balance_card</item>
         <item name="colorValueCardRemainingBalance">@color/color_value_remaining_balance_card</item>
         <item name="colorDescCardRemainingBalance">@color/color_desc_remaining_balance_card</item>
+
+        <!--    card income    -->
+        <item name="backgroundColorCardIncome">@color/background_color_card_income</item>
+        <item name="colorIconCardIncome">@color/color_icon_card_income</item>
+        <item name="colorTitleCardIncome">@color/color_title_card_income</item>
+        <item name="colorValueCardIncome">@color/color_value_card_income</item>
+        <item name="colorDescCardIncome">@color/color_desc_card_income</item>
+        <item name="colorDividerCardIncome">@color/color_divider_card_income</item>
 
     </style>
 

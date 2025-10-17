@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Theme">
+
+        <!-- colors remaining balance       -->
         <attr name="backgroundColorCardRemainingBalanceGradientStart" format="color" />
         <attr name="backgroundColorCardRemainingBalanceGradientEnd" format="color" />
-        <attr name="backgroundColorIconCardRemainingBalance" format="color" />
+        <attr name="colorIconCardRemainingBalance" format="color" />
         <attr name="colorTitleCardRemainingBalance" format="color"/>
         <attr name="colorValueCardRemainingBalance" format="color"/>
         <attr name="colorDescCardRemainingBalance" format="color"/>
+
+
+        <attr name="backgroundColorCardIncome" format="color"/>
+        <attr name="colorIconCardIncome" format="color"/>
+        <attr name="colorTitleCardIncome" format="color"/>
+        <attr name="colorValueCardIncome" format="color"/>
+        <attr name="colorDividerCardIncome" format="color"/>
+        <attr name="colorDescCardIncome" format="color"/>
 
     </declare-styleable>
 </resources>

@@ -6,11 +6,21 @@
 
     <color name="colorBackground">#F3FFFC</color>
 
-    <color name="background_card_remaining_balance_gradient_start">#48BFE3</color>
-    <color name="background_card_remaining_balance_gradient_end">#F4FCFF</color>
-    <color name="background_color_icon_card_remaining_balance">#0D99FF</color>
+
+    <!-- card remaining balance   -->
+    <color name="background_color_card_remaining_balance_gradient_start">#48BFE3</color>
+    <color name="background_color_card_remaining_balance_gradient_end">#F4FCFF</color>
+    <color name="color_icon_card_remaining_balance">#0D99FF</color>
     <color name="color_title_remaining_balance_card">@color/black</color>
     <color name="color_value_remaining_balance_card">#181BE0</color>
     <color name="color_desc_remaining_balance_card">#3A3939</color>
+
+    <!--  card income  -->
+    <color name="background_color_card_income">#80FFDB</color>
+    <color name="color_icon_card_income">#06C97D</color>
+    <color name="color_title_card_income">@color/black</color>
+    <color name="color_value_card_income">#11057C</color>
+    <color name="color_desc_card_income">#717171</color>
+    <color name="color_divider_card_income">#BCBABA</color>
 
 </resources>
