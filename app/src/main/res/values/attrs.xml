@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Theme">
+        <attr name="backgroundColorCardRemainingBalanceGradientStart" format="color" />
+        <attr name="backgroundColorCardRemainingBalanceGradientEnd" format="color" />
+        <attr name="backgroundColorIconCardRemainingBalance" format="color" />
+        <attr name="colorTitleCardRemainingBalance" format="color"/>
+        <attr name="colorValueCardRemainingBalance" format="color"/>
+        <attr name="colorDescCardRemainingBalance" format="color"/>
+
+    </declare-styleable>
+</resources>

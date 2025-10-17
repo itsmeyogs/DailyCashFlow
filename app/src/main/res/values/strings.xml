@@ -20,4 +20,7 @@
     <string name="home">Home</string>
     <string name="category">Category</string>
     <string name="profile">Profile</string>
+    <string name="title_remaining_balance">Sisa Saldo</string>
+    <string name="example_value_remaining_balance">Rp 70.000</string>
+    <string name="example_desc_remaining_balance">Sisa saldo pertanggal 24 Juni 2025</string>
 </resources>
