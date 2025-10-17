@@ -84,7 +84,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:textSize="24sp"
                 android:textColor="?attr/colorValueCardRemainingBalance"
-                android:layout_marginVertical="8dp"
+                android:layout_marginVertical="4dp"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_remaining_balance"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/tv_desc_remaining_balance"
@@ -114,7 +114,7 @@
         app:cardCornerRadius="10dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="8dp"
         app:strokeWidth="0dp"
         app:cardElevation="2dp"
         app:layout_constraintTop_toBottomOf="@id/card_remaining_balance"
@@ -136,7 +136,7 @@
                 android:letterSpacing="0.01"
                 android:text="@string/title_income"
                 android:textColor="?attr/colorTitleCardIncome"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_value_income"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -160,7 +160,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/example_value_income"
                 android:textColor="?attr/colorValueCardIncome"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/divider_income"
                 app:layout_constraintStart_toStartOf="@id/tv_title_income"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_income" />
@@ -186,13 +186,12 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/example_desc_income"
                 android:textColor="?attr/colorDescCardIncome"
-                android:textSize="9sp"
+                android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/icon_desc_income"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider_income"
-                tools:ignore="SmallSp" />
+                app:layout_constraintTop_toBottomOf="@id/divider_income" />
 
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -219,7 +218,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         app:strokeWidth="0dp"
         app:cardElevation="2dp"
         app:layout_constraintTop_toTopOf="@id/card_income"
@@ -238,7 +237,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="13dp"
                 android:fontFamily="@font/poppins_medium"
                 android:letterSpacing="0.01"
                 android:text="@string/title_expense"
@@ -269,7 +268,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/example_value_expense"
                 android:textColor="?attr/colorValueCardExpense"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_expense"
                 app:layout_constraintStart_toStartOf="@id/tv_title_expense"
                 app:layout_constraintBottom_toTopOf="@id/divider_expense"
@@ -297,13 +296,13 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/example_desc_expense"
                 android:textColor="?attr/colorDescCardExpense"
-                android:textSize="9sp"
+                android:textSize="11sp"
                 app:layout_constraintTop_toBottomOf="@id/divider_expense"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/icon_desc_expense"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                tools:ignore="SmallSp" />
+                />
 
 
             <com.google.android.material.imageview.ShapeableImageView
