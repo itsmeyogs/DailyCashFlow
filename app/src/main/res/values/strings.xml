@@ -26,4 +26,7 @@
     <string name="title_income">Pemasukan</string>
     <string name="example_value_income">Rp 200.000</string>
     <string name="example_desc_income">Update 24 Juni 2025</string>
+    <string name="title_expense">Pengeluaran</string>
+    <string name="example_value_expense">Rp 60.000</string>
+    <string name="example_desc_expense">Update 24 Juni 2025</string>
 </resources>

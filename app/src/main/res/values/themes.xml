@@ -22,6 +22,14 @@
         <item name="colorDescCardIncome">@color/color_desc_card_income</item>
         <item name="colorDividerCardIncome">@color/color_divider_card_income</item>
 
+        <!--    card expense    -->
+        <item name="backgroundColorCardExpense">@color/background_color_card_expense</item>
+        <item name="colorIconCardExpense">@color/color_icon_card_expense</item>
+        <item name="colorTitleCardExpense">@color/color_title_card_expense</item>
+        <item name="colorValueCardExpense">@color/color_value_card_expense</item>
+        <item name="colorDescCardExpense">@color/color_desc_card_expense</item>
+        <item name="colorDividerCardExpense">@color/color_divider_card_expense</item>
+
     </style>
 
     <style name="Theme.DailyCashFlow" parent="Base.Theme.DailyCashFlow" />
