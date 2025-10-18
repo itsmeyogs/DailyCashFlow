@@ -39,5 +39,6 @@
     <string name="range_date_filter_daily">Hari ini</string>
     <string name="range_date_filter_weekly">Minggu ini</string>
     <string name="range_date_filter_monthly">Bulan ini</string>
+    <string name="label_pie_chart">Ringkasan Keuangan</string>
 
 </resources>
