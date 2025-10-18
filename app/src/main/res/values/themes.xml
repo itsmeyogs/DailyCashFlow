@@ -30,6 +30,15 @@
         <item name="colorDescCardExpense">@color/color_desc_card_expense</item>
         <item name="colorDividerCardExpense">@color/color_divider_card_expense</item>
 
+        <!--    card summary    -->
+        <item name="backgroundColorCardSummary">@color/background_color_card_summary</item>
+        <item name="colorTitleCardSummary">@color/color_title_card_summary</item>
+        <item name="colorValueIncomeCardSummary">@color/color_value_income_card_summary</item>
+        <item name="colorValueExpenseCardSummary">@color/color_value_expense_card_summary</item>
+        <item name="colorActionCardSummary">@color/color_action_card_summary</item>
+        <item name="colorIncomePieChart">@color/color_income_pie_chart</item>
+        <item name="colorExpensePieChart">@color/color_expense_pie_chart</item>
+
     </style>
 
     <style name="Theme.DailyCashFlow" parent="Base.Theme.DailyCashFlow" />

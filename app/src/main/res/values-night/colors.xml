@@ -32,4 +32,13 @@
     <color name="color_desc_card_expense">#D9D9D9</color>
     <color name="color_divider_card_expense">@color/colorDivider</color>
 
+    <!--  card summary  -->
+    <color name="background_color_card_summary">#9DFFE3</color>
+    <color name="color_title_card_summary">@color/black</color>
+    <color name="color_value_income_card_summary">#19A36D</color>
+    <color name="color_value_expense_card_summary">#FF5151</color>
+    <color name="color_action_card_summary">#0601AD</color>
+    <color name="color_income_pie_chart">#06C97D</color>
+    <color name="color_expense_pie_chart">#FF5151</color>
+
 </resources>

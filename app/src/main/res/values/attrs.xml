@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="Theme">
 
-        <!-- colors remaining balance       -->
+        <!-- colors card remaining balance       -->
         <attr name="backgroundColorCardRemainingBalanceGradientStart" format="color" />
         <attr name="backgroundColorCardRemainingBalanceGradientEnd" format="color" />
         <attr name="colorIconCardRemainingBalance" format="color" />
@@ -10,7 +10,7 @@
         <attr name="colorValueCardRemainingBalance" format="color"/>
         <attr name="colorDescCardRemainingBalance" format="color"/>
 
-        <!-- colors income-->
+        <!-- colors card income-->
         <attr name="backgroundColorCardIncome" format="color"/>
         <attr name="colorIconCardIncome" format="color"/>
         <attr name="colorTitleCardIncome" format="color"/>
@@ -18,13 +18,22 @@
         <attr name="colorDividerCardIncome" format="color"/>
         <attr name="colorDescCardIncome" format="color"/>
 
-        <!-- colors Expense-->
+        <!-- colors card Expense-->
         <attr name="backgroundColorCardExpense" format="color"/>
         <attr name="colorIconCardExpense" format="color"/>
         <attr name="colorTitleCardExpense" format="color"/>
         <attr name="colorValueCardExpense" format="color"/>
         <attr name="colorDividerCardExpense" format="color"/>
         <attr name="colorDescCardExpense" format="color"/>
+
+        <!--  colors card summary  -->
+        <attr name="backgroundColorCardSummary" format="color"/>
+        <attr name="colorTitleCardSummary" format="color"/>
+        <attr name="colorValueIncomeCardSummary" format="color"/>
+        <attr name="colorValueExpenseCardSummary" format="color"/>
+        <attr name="colorActionCardSummary" format="color"/>
+        <attr name="colorIncomePieChart" format="color"/>
+        <attr name="colorExpensePieChart" format="color"/>
 
     </declare-styleable>
 </resources>
