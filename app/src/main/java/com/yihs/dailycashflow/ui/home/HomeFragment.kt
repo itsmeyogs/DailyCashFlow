@@ -1,6 +1,7 @@
 package com.yihs.dailycashflow.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,14 @@ class HomeFragment : Fragment() {
         spinner.adapter = adapterSpinner
 
         //set default value dropdown to daily
-        spinner.setSelection(1)
+        viewModel.selectedFilterRangeDate.observe(viewLifecycleOwner){ item ->
+            val position = valuesDropDown.indexOf(item)
+            if(position != -1){
+                Log.d("selected changed", item.value)
+                spinner.setSelection(position)
+            }
+
+        }
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(

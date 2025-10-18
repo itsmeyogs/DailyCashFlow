@@ -10,5 +10,6 @@
     android:paddingVertical="8dp"
     android:fontFamily="@font/poppins_medium"
     android:textColor="?attr/colorTextSpinner"
+    android:background="@drawable/bg_dropdown_item_selector"
     tools:text="@string/range_date_filter_daily"
     />
