@@ -38,6 +38,9 @@
         <item name="colorActionCardSummary">@color/color_action_card_summary</item>
         <item name="colorIncomePieChart">@color/color_income_pie_chart</item>
         <item name="colorExpensePieChart">@color/color_expense_pie_chart</item>
+        <item name="colorBgSpinner">@color/color_bg_spinner</item>
+        <item name="colorOutlineSpinner">@color/color_outline_spinner</item>
+        <item name="colorTextSpinner">@color/color_text_spinner</item>
 
     </style>
 
