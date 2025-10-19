@@ -2,10 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorDivider">#BCBABA</color>
+    <color name="color_divider">#BCBABA</color>
 
 
-    <color name="colorBackground">#F3FFFC</color>
+    <color name="color_background">#F3FFFC</color>
+    <color name="color_action_see_more">#0601AD</color>
 
 
     <!-- card remaining balance   -->
@@ -22,7 +23,7 @@
     <color name="color_title_card_income">@color/black</color>
     <color name="color_value_card_income">#11057C</color>
     <color name="color_desc_card_income">#717171</color>
-    <color name="color_divider_card_income">@color/colorDivider</color>
+    <color name="color_divider_card_income">@color/color_divider</color>
 
     <!--  card expense  -->
     <color name="background_color_card_expense">#4EA8DE</color>
@@ -30,18 +31,36 @@
     <color name="color_title_card_expense">#FFFDFD</color>
     <color name="color_value_card_expense">@color/white</color>
     <color name="color_desc_card_expense">#D9D9D9</color>
-    <color name="color_divider_card_expense">@color/colorDivider</color>
+    <color name="color_divider_card_expense">@color/color_divider</color>
 
     <!--  card summary  -->
     <color name="background_color_card_summary">#9DFFE3</color>
     <color name="color_title_card_summary">@color/black</color>
     <color name="color_value_income_card_summary">#19A36D</color>
     <color name="color_value_expense_card_summary">#FF5151</color>
-    <color name="color_action_card_summary">#0601AD</color>
+    <color name="color_action_card_summary">@color/color_action_see_more</color>
     <color name="color_income_pie_chart">#06C97D</color>
     <color name="color_expense_pie_chart">#FF5151</color>
-    <color name="color_bg_spinner">#F0FEFD</color>
-    <color name="color_outline_spinner">#A7FFEB</color>
+    <color name="color_bg_spinner">#9DFFE3</color>
+    <color name="color_outline_spinner">#D8D8D8</color>
     <color name="color_text_spinner">@color/black</color>
+
+    <!--  transaction history dashboard  -->
+    <color name="color_title_transaction_history_dashboard">@color/black</color>
+    <color name="color_action_transaction_history_dashboard">@color/color_action_see_more</color>
+
+    <!--  item list transaction history  -->
+    <color name="background_color_item_transaction_history">#F5FDFF</color>
+    <color name="color_title_item_transaction_history">@color/black</color>
+    <color name="color_value_income_item_transaction_history">#06C97D</color>
+    <color name="color_value_expense_item_transaction_history">#FF2800</color>
+    <color name="color_desc_item_transaction_history">#605F5F</color>
+
+
+    <color name="background_color_fab">#48BFE3</color>
+    <color name="color_icon_fab">@color/white</color>
+
+
+
 
 </resources>
