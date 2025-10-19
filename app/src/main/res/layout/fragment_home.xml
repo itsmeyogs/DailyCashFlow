@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_gradient_card_remaining_balance"
-            android:paddingHorizontal="24dp"
+            android:paddingHorizontal="20dp"
             android:paddingVertical="18dp">
 
             <com.google.android.material.textview.MaterialTextView
@@ -38,7 +38,10 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_value_remaining_balance"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintEnd_toStartOf="@id/icon_remaining_balance"
+                />
 
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -49,32 +52,36 @@
                 android:tint="@color/color_icon_card_remaining_balance"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title_remaining_balance"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_title_remaining_balance"
                 app:layout_constraintTop_toTopOf="@id/tv_title_remaining_balance" />
 
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_value_remaining_balance"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="4dp"
+                android:layout_marginVertical="2dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/example_value_remaining_balance"
                 android:textColor="?attr/colorValueCardRemainingBalance"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_desc_remaining_balance"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_remaining_balance" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_desc_remaining_balance"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
+                android:layout_marginTop="4dp"
                 android:text="@string/example_desc_remaining_balance"
                 android:textColor="?attr/colorDescCardRemainingBalance"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_value_remaining_balance" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,31 +120,38 @@
                 android:textSize="13sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_value_income"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/icon_income"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/icon_income"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="14dp"
                 android:src="@drawable/ic_money_plus_line"
                 android:tint="?attr/colorIconCardIncome"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title_income"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_title_income"
                 app:layout_constraintTop_toTopOf="@id/tv_title_income" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_value_income"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/example_value_income"
                 android:textColor="?attr/colorValueCardIncome"
                 android:textSize="16sp"
+                android:layout_marginHorizontal="14dp"
                 app:layout_constraintBottom_toTopOf="@id/divider_income"
-                app:layout_constraintStart_toStartOf="@id/tv_title_income"
-                app:layout_constraintTop_toBottomOf="@id/tv_title_income" />
+                app:layout_constraintTop_toBottomOf="@id/tv_title_income"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
 
             <com.google.android.material.divider.MaterialDivider
@@ -153,7 +167,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_desc_income"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
                 android:layout_marginStart="14dp"
@@ -167,20 +181,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider_income" />
 
-
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/icon_desc_income"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="14dp"
+                android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_arrow_right"
                 android:tint="?attr/colorDescCardIncome"
                 app:layout_constraintBottom_toBottomOf="@id/tv_desc_income"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_desc_income"
                 app:layout_constraintTop_toTopOf="@id/tv_desc_income" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -219,31 +231,39 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_value_expense"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/icon_expense"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/icon_expense"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="14dp"
                 android:src="@drawable/ic_money_minus_line"
                 android:tint="?attr/colorIconCardExpense"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title_expense"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_title_expense" />
+                app:layout_constraintTop_toTopOf="@id/tv_title_expense"
+                app:layout_constraintStart_toEndOf="@id/tv_title_expense"
+                />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_value_expense"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/example_value_expense"
                 android:textColor="?attr/colorValueCardExpense"
                 android:textSize="16sp"
+                android:layout_marginHorizontal="14dp"
                 app:layout_constraintBottom_toTopOf="@id/divider_expense"
-                app:layout_constraintStart_toStartOf="@id/tv_title_expense"
-                app:layout_constraintTop_toBottomOf="@id/tv_title_expense" />
+                app:layout_constraintTop_toBottomOf="@id/tv_title_expense"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
 
             <com.google.android.material.divider.MaterialDivider
@@ -259,7 +279,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_desc_expense"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
                 android:layout_marginStart="14dp"
@@ -279,7 +299,7 @@
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="14dp"
+                android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_arrow_right"
                 android:tint="?attr/colorDescCardExpense"
                 app:layout_constraintBottom_toBottomOf="@id/tv_desc_expense"
