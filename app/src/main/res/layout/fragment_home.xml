@@ -303,13 +303,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_card_summary"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="12dp">
+            android:paddingHorizontal="14dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.78" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_title_summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/poppins_medium"
                 android:letterSpacing="0.01"
                 android:text="@string/title_summary"
@@ -323,29 +337,28 @@
                 android:id="@+id/layout_dropdown_range_date_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_spinner"
                 android:layout_marginStart="12dp"
-                app:layout_constraintStart_toEndOf="@id/tv_title_summary"
-                app:layout_constraintTop_toTopOf="@id/tv_title_summary"
+                android:background="@drawable/bg_spinner"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title_summary"
-                >
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_summary"
+                app:layout_constraintStart_toEndOf="@id/tv_title_summary"
+                app:layout_constraintTop_toTopOf="@id/tv_title_summary">
 
                 <Spinner
                     android:id="@+id/dropdown_range_date_filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"
                     android:dropDownWidth="wrap_content"
-                    android:popupBackground="@drawable/bg_spinner"
                     android:overlapAnchor="false"
-                    />
+                    android:popupBackground="@drawable/bg_spinner"
+                    android:spinnerMode="dropdown" />
             </FrameLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_title_summary_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/inter"
                 android:letterSpacing="0.01"
                 android:text="@string/title_summary_income"
                 android:textColor="?attr/colorTitleCardSummary"
@@ -359,22 +372,21 @@
                 android:id="@+id/tv_value_summary_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/example_value_income"
                 android:textColor="?attr/colorValueIncomeCardSummary"
                 android:textSize="12sp"
-                android:layout_marginStart="4dp"
-                app:layout_constraintTop_toTopOf="@id/tv_title_summary_income"
-                app:layout_constraintStart_toEndOf="@id/tv_title_summary_income"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title_summary_income"
-                />
+                app:layout_constraintStart_toEndOf="@id/tv_title_summary_income"
+                app:layout_constraintTop_toTopOf="@id/tv_title_summary_income" />
 
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_title_summary_expense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/inter"
                 android:letterSpacing="0.01"
                 android:text="@string/title_summary_expense"
                 android:textColor="?attr/colorTitleCardSummary"
@@ -387,23 +399,23 @@
                 android:id="@+id/tv_value_summary_expense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/example_value_expense"
                 android:textColor="?attr/colorValueExpenseCardSummary"
                 android:textSize="12sp"
-                android:layout_marginStart="4dp"
-                app:layout_constraintTop_toTopOf="@id/tv_title_summary_expense"
-                app:layout_constraintStart_toEndOf="@id/tv_title_summary_expense"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title_summary_expense"
-                />
+                app:layout_constraintStart_toEndOf="@id/tv_title_summary_expense"
+                app:layout_constraintTop_toTopOf="@id/tv_title_summary_expense" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/btn_action_summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/inter"
                 android:letterSpacing="0.01"
                 android:text="@string/see_more"
                 android:textColor="?attr/colorActionCardSummary"
@@ -416,7 +428,8 @@
                 android:id="@+id/icon_action_summary"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="6dp"
                 android:src="@drawable/ic_arrow_right"
                 android:tint="?attr/colorActionCardSummary"
                 app:layout_constraintBottom_toBottomOf="@id/btn_action_summary"
@@ -428,12 +441,67 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_centerInParent="true"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layout_dropdown_range_date_filter"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_summary"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/layout_dropdown_range_date_filter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <View
+                android:id="@+id/rectangle_label_pie_chart_income"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="12dp"
+                android:background="?attr/colorIncomePieChart"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_summary"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_summary"
+                app:layout_constraintEnd_toStartOf="@id/tv_label_pie_chart_income"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_label_pie_chart_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:text="@string/label_pie_chart_income"
+                android:textColor="?attr/colorTitleCardSummary"
+                android:textSize="10sp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintTop_toTopOf="@id/rectangle_label_pie_chart_income"
+                app:layout_constraintBottom_toBottomOf="@id/rectangle_label_pie_chart_income"
+                app:layout_constraintStart_toEndOf="@id/rectangle_label_pie_chart_income"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="SmallSp" />
+
+            <View
+                android:id="@+id/rectangle_label_pie_chart_expense"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="2dp"
+                android:background="?attr/colorExpensePieChart"
+                app:layout_constraintTop_toBottomOf="@id/rectangle_label_pie_chart_income"
+                app:layout_constraintStart_toStartOf="@id/rectangle_label_pie_chart_income"
+                app:layout_constraintEnd_toEndOf="@id/rectangle_label_pie_chart_income"
+                />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_label_pie_chart_expense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:text="@string/label_pie_chart_expense"
+                android:textColor="?attr/colorTitleCardSummary"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="@id/tv_label_pie_chart_income"
+                app:layout_constraintTop_toTopOf="@id/rectangle_label_pie_chart_expense"
+                app:layout_constraintBottom_toBottomOf="@id/rectangle_label_pie_chart_expense"
+                tools:ignore="SmallSp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

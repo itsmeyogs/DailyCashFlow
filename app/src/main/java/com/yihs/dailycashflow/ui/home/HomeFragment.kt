@@ -1,7 +1,6 @@
 package com.yihs.dailycashflow.ui.home
 
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,17 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.color.MaterialColors
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.databinding.FragmentHomeBinding
+import com.yihs.dailycashflow.utils.Helper
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -49,62 +45,58 @@ class HomeFragment : Fragment() {
     private fun setUpPieChart(){
         val pieChart = binding.pieChart
 
-        //get entries from viewmodel
-        val pieChartEntries = viewModel.pieChartEntries
+        val data = viewModel.exampleDataPieChart
+
+        //show percent label manual, not in pie chart
+        setUpLabelPieChart(data.income, data.expense)
+
+        //convert data to pieEntry
+        val pieChartEntries = listOf(
+            //expense dulu agar income sebelah kiri di pie chart
+            PieEntry(data.expense, resources.getString(R.string.expense)),
+            PieEntry(data.income, resources.getString(R.string.income))
+        )
+
+        //set colors pie chart
+        val colors = listOf(
+            MaterialColors.getColor(requireContext(), R.attr.colorExpensePieChart, Color.RED),
+            MaterialColors.getColor(requireContext(), R.attr.colorIncomePieChart, Color.GREEN)
+        )
 
         //create dataset pie from entries
         val dataset = PieDataSet(pieChartEntries,"")
 
-        //set colors pie chart
-        val colors = ArrayList<Int>()
-        colors.add(MaterialColors.getColor(requireContext(), R.attr.colorIncomePieChart, Color.GREEN))
-        colors.add(MaterialColors.getColor(requireContext(), R.attr.colorExpensePieChart, Color.RED))
+
+
         dataset.colors = colors
 
-        val colorLabelPie = MaterialColors.getColor(requireContext(), R.attr.colorTextSpinner,
-            Color.BLACK)
-        val fontLabelPie = ResourcesCompat.getFont(requireContext(), R.font.poppins)
-
-        //set show percent value
-        pieChart.setUsePercentValues(true)
-
-        // Pindahkan nilai (value) ke LUAR slice
-        dataset.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE)
-
-        // Atur styling garis penghubung (value lines)
-        dataset.valueLinePart1Length = 0.5f
-        dataset.valueLinePart2Length = 0.5f
-        dataset.valueLinePart1OffsetPercentage = 100f // Posisikan garis di tepi slice
-        dataset.valueLineWidth = 1f
-        dataset.valueLineColor = colorLabelPie // Samakan warna garis dengan teks
-
-        // Format value untuk menampilkan LABEL dan PERSEN
-        dataset.valueFormatter = object : PercentFormatter(pieChart) {
-            override fun getPieLabel(value: Float, pieEntry: PieEntry?): String {
-                if (pieEntry == null) return ""
-                // Dapatkan persen yang sudah diformat (misal: "80.0 %")
-                val percent = super.getFormattedValue(value)
-
-                // Gabungkan label dan persen (misal: "Income 80.0 %")
-                return "${pieEntry.label} $percent"
-            }
-        }
-
-        //change value text style to poppins
-        dataset.valueTypeface = fontLabelPie
-        //change value text size
-        dataset.valueTextSize = 10f
-        //change value text color
-        dataset.valueTextColor = colorLabelPie
+        //hide value
+        dataset.setDrawValues(false)
 
         //disable description in bottom right corner
         pieChart.description.isEnabled = false
 
+        //set space slice(pemisah antar slice)
+        dataset.sliceSpace = 1f
+
+
+        //enable hole in center
+        pieChart.isDrawHoleEnabled = true
+
+        //change color hole
+        pieChart.setHoleColor(MaterialColors.getColor(requireContext(), R.attr.backgroundColorCardSummary, Color.WHITE))
+
+        //set hole size
+        pieChart.holeRadius = 60f
+
+
+
+
+        //disable entry label
+        pieChart.setDrawEntryLabels(false)
+
         //disable legend
         pieChart.legend.isEnabled = false
-
-        // Matikan EntryLabel bawaan (karena sudah kita gabung di value)
-        pieChart.setDrawEntryLabels(false)
 
         //create pie data
         val pieData = PieData(dataset)
@@ -113,7 +105,18 @@ class HomeFragment : Fragment() {
         pieChart.animateY(1000)
     }
 
+    private fun setUpLabelPieChart(income: Float, expense: Float){
+        val total = income+expense
+        val incomeRatio = income/total
+        val expenseRatio = expense/total
 
+        binding.apply {
+            tvLabelPieChartIncome.text = String.format(resources.getString(R.string.label_pie_chart_income), Helper.toPercent(incomeRatio))
+            tvLabelPieChartExpense.text = String.format(resources.getString(R.string.label_pie_chart_expense), Helper.toPercent(expenseRatio))
+        }
+
+
+    }
 
 
 

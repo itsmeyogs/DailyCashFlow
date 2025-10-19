@@ -3,8 +3,8 @@ package com.yihs.dailycashflow.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.mikephil.charting.data.PieEntry
 import com.yihs.dailycashflow.data.model.RangeDateFilter
+import com.yihs.dailycashflow.data.model.Summary
 import com.yihs.dailycashflow.repository.Repository
 
 class HomeViewModel(private val repository: Repository) : ViewModel() {
@@ -25,17 +25,7 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 
 
     //pie chart
-
-    val pieChartEntries = ArrayList<PieEntry>()
-
-    init {
-        pieChartEntries.add(PieEntry(200000f, "Income"))
-        pieChartEntries.add(PieEntry(60000f, "Expense"))
-    }
-
-
-
-
+    val exampleDataPieChart = Summary(income = 200000f, expense = 60000f)
 
 
 
