@@ -9,20 +9,22 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.google.android.material.color.MaterialColors
 import com.yihs.dailycashflow.R
+import com.yihs.dailycashflow.data.model.Transaction
 import com.yihs.dailycashflow.databinding.FragmentHomeBinding
 import com.yihs.dailycashflow.utils.Helper
+import com.yihs.dailycashflow.utils.showSnackBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel : HomeViewModel by viewModel()
+    private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,11 +38,40 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        homeAdapter = HomeAdapter()
+
         setUpDropDown()
         setUpPieChart()
 
+        //set rv transaction to linear layout
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rvTransactionHistory.layoutManager = layoutManager
+
+        //handle on click item transaction
+        homeAdapter.onClickItem = { data ->
+            handleClickItemTransaction(data)
+        }
+
+
+        viewModel.transactionHistory.observe(viewLifecycleOwner){data ->
+            setDataTransaction(data)
+        }
 
     }
+
+    private fun setDataTransaction(data: List<Transaction>){
+        homeAdapter.submitList(data)
+        binding.rvTransactionHistory.adapter = homeAdapter
+    }
+
+
+
+
+    private fun handleClickItemTransaction(item: Transaction){
+        showSnackBar("clicked item ${item.id}")
+
+    }
+
 
     private fun setUpPieChart(){
         val pieChart = binding.pieChart
@@ -59,8 +90,9 @@ class HomeFragment : Fragment() {
 
         //set colors pie chart
         val colors = listOf(
-            MaterialColors.getColor(requireContext(), R.attr.colorExpensePieChart, Color.RED),
-            MaterialColors.getColor(requireContext(), R.attr.colorIncomePieChart, Color.GREEN)
+            Helper.getColorFromAttr(requireContext(), R.attr.colorExpensePieChart, Color.RED),
+            Helper.getColorFromAttr(requireContext(), R.attr.colorIncomePieChart, Color.GREEN)
+
         )
 
         //create dataset pie from entries
@@ -84,7 +116,7 @@ class HomeFragment : Fragment() {
         pieChart.isDrawHoleEnabled = true
 
         //change color hole
-        pieChart.setHoleColor(MaterialColors.getColor(requireContext(), R.attr.backgroundColorCardSummary, Color.WHITE))
+        pieChart.setHoleColor(Helper.getColorFromAttr(requireContext(), R.attr.backgroundColorCardSummary, Color.WHITE))
 
         //set hole size
         pieChart.holeRadius = 60f
@@ -117,7 +149,6 @@ class HomeFragment : Fragment() {
 
 
     }
-
 
 
     private fun setUpDropDown(){

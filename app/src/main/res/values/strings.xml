@@ -47,7 +47,10 @@
     <string name="desc_btn_add_new_transaction">Tambah Transaksi Baru</string>
     <string name="example_title_item_transaction">Makan</string>
     <string name="example_desc_item_transaction">Makan Padang</string>
+    <string name="example_date_item_transaction">Minggu, 18 September 2025</string>
+
     <string name="amount_item_income_transaction">+ %1$s</string>
+    <string name="amount_item_expense_transaction">- %1$s</string>
 
 
 </resources>

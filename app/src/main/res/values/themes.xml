@@ -52,6 +52,7 @@
         <item name="colorTitleItemTransactionHistory">@color/color_title_item_transaction_history</item>
         <item name="colorValueIncomeItemTransactionHistory">@color/color_value_income_item_transaction_history</item>
         <item name="colorValueExpenseItemTransactionHistory">@color/color_value_expense_item_transaction_history</item>
+        <item name="colorValueDefaultItemTransactionHistory">@color/color_value_default_item_transaction_history</item>
         <item name="colorDescItemTransactionHistory">@color/color_desc_item_transaction_history</item>
 
 
