@@ -55,6 +55,10 @@
     <color name="color_value_income_item_transaction_history">#06C97D</color>
     <color name="color_value_expense_item_transaction_history">#FF2800</color>
     <color name="color_desc_item_transaction_history">#605F5F</color>
+    
+    
+    <color name="background_color_fab">#48BFE3</color>
+    <color name="color_icon_fab">@color/white</color>
 
 
 

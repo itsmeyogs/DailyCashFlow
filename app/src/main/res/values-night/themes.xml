@@ -54,6 +54,10 @@
         <item name="colorValueExpenseItemTransactionHistory">@color/color_value_expense_item_transaction_history</item>
         <item name="colorDescItemTransactionHistory">@color/color_desc_item_transaction_history</item>
 
+
+        <item name="backgroundColorFAB">@color/background_color_fab</item>
+        <item name="colorIconFAB">@color/color_icon_fab</item>"
+
     </style>
 
     <style name="Theme.DailyCashFlow" parent="Base.Theme.DailyCashFlow" />
