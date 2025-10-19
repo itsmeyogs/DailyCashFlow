@@ -43,6 +43,7 @@
     <string name="label_pie_chart_expense">Pengeluaran (%1$s)</string>
     <string name="income">Income</string>
     <string name="expense">Expense</string>
+    <string name="title_transaction_history">Riwayat Transaksi</string>
 
 
 </resources>

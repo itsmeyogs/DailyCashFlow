@@ -4,7 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
-        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:colorBackground">@color/color_background</item>
 
         <!-- card  remaining balance      -->
         <item name="backgroundColorCardRemainingBalanceGradientStart">@color/background_color_card_remaining_balance_gradient_start</item>
@@ -41,6 +41,18 @@
         <item name="colorBgSpinner">@color/color_bg_spinner</item>
         <item name="colorOutlineSpinner">@color/color_outline_spinner</item>
         <item name="colorTextSpinner">@color/color_text_spinner</item>
+
+        <!--    transaction history dashboard   -->
+        <item name="colorTitleTransactionHistoryDashboard">@color/color_title_transaction_history_dashboard</item>
+        <item name="colorActionTransactionHistoryDashboard">@color/color_action_transaction_history_dashboard</item>
+
+
+        <!--  item transaction history     -->
+        <item name="backgroundColorItemTransactionHistory">@color/background_color_item_transaction_history</item>
+        <item name="colorTitleItemTransactionHistory">@color/color_title_item_transaction_history</item>
+        <item name="colorValueIncomeItemTransactionHistory">@color/color_value_income_item_transaction_history</item>
+        <item name="colorValueExpenseItemTransactionHistory">@color/color_value_expense_item_transaction_history</item>
+        <item name="colorDescItemTransactionHistory">@color/color_desc_item_transaction_history</item>
 
     </style>
 
