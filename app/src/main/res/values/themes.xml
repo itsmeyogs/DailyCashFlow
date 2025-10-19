@@ -3,6 +3,45 @@
     <style name="Base.Theme.DailyCashFlow" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="android:colorBackground">@color/colorBackground</item>
+
+        <!-- card  remaining balance      -->
+        <item name="backgroundColorCardRemainingBalanceGradientStart">@color/background_color_card_remaining_balance_gradient_start</item>
+        <item name="backgroundColorCardRemainingBalanceGradientEnd">@color/background_color_card_remaining_balance_gradient_end</item>
+        <item name="colorIconCardRemainingBalance">@color/color_icon_card_remaining_balance</item>
+        <item name="colorTitleCardRemainingBalance">@color/color_title_remaining_balance_card</item>
+        <item name="colorValueCardRemainingBalance">@color/color_value_remaining_balance_card</item>
+        <item name="colorDescCardRemainingBalance">@color/color_desc_remaining_balance_card</item>
+
+        <!--    card income    -->
+        <item name="backgroundColorCardIncome">@color/background_color_card_income</item>
+        <item name="colorIconCardIncome">@color/color_icon_card_income</item>
+        <item name="colorTitleCardIncome">@color/color_title_card_income</item>
+        <item name="colorValueCardIncome">@color/color_value_card_income</item>
+        <item name="colorDescCardIncome">@color/color_desc_card_income</item>
+        <item name="colorDividerCardIncome">@color/color_divider_card_income</item>
+
+        <!--    card expense    -->
+        <item name="backgroundColorCardExpense">@color/background_color_card_expense</item>
+        <item name="colorIconCardExpense">@color/color_icon_card_expense</item>
+        <item name="colorTitleCardExpense">@color/color_title_card_expense</item>
+        <item name="colorValueCardExpense">@color/color_value_card_expense</item>
+        <item name="colorDescCardExpense">@color/color_desc_card_expense</item>
+        <item name="colorDividerCardExpense">@color/color_divider_card_expense</item>
+
+        <!--    card summary    -->
+        <item name="backgroundColorCardSummary">@color/background_color_card_summary</item>
+        <item name="colorTitleCardSummary">@color/color_title_card_summary</item>
+        <item name="colorValueIncomeCardSummary">@color/color_value_income_card_summary</item>
+        <item name="colorValueExpenseCardSummary">@color/color_value_expense_card_summary</item>
+        <item name="colorActionCardSummary">@color/color_action_card_summary</item>
+        <item name="colorIncomePieChart">@color/color_income_pie_chart</item>
+        <item name="colorExpensePieChart">@color/color_expense_pie_chart</item>
+        <item name="colorBgSpinner">@color/color_bg_spinner</item>
+        <item name="colorOutlineSpinner">@color/color_outline_spinner</item>
+        <item name="colorTextSpinner">@color/color_text_spinner</item>
+
     </style>
 
     <style name="Theme.DailyCashFlow" parent="Base.Theme.DailyCashFlow" />

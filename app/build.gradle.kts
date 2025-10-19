@@ -67,9 +67,12 @@ dependencies {
     // ViewModel & LiveData
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
-//    implementation(libs.androidx.activity.ktx)
 
+    //koin
     implementation (libs.koin.android)
+
+    //pie chart
+    implementation(libs.mpandroidchart)
 
 
     testImplementation(libs.junit)

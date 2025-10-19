@@ -20,4 +20,29 @@
     <string name="home">Home</string>
     <string name="category">Category</string>
     <string name="profile">Profile</string>
+
+    <!-- Range Date Filter   -->
+    <string name="range_date_filter_daily">Hari ini</string>
+    <string name="range_date_filter_weekly">Minggu ini</string>
+    <string name="range_date_filter_monthly">Bulan ini</string>
+
+    <string name="title_remaining_balance">Sisa Saldo</string>
+    <string name="example_value_remaining_balance">Rp 70.000</string>
+    <string name="example_desc_remaining_balance">Sisa saldo pertanggal 24 Juni 2025</string>
+    <string name="title_income">Pemasukan</string>
+    <string name="example_value_income">Rp 200.000</string>
+    <string name="example_desc_income">Update 24 Juni 2025</string>
+    <string name="title_expense">Pengeluaran</string>
+    <string name="example_value_expense">Rp 60.000</string>
+    <string name="example_desc_expense">Update 24 Juni 2025</string>
+    <string name="title_summary">Ringkasan</string>
+    <string name="title_summary_income">Pemasukan :</string>
+    <string name="title_summary_expense">Pengeluaran :</string>
+    <string name="see_more"><u>Lihat Selengkapnya</u></string>
+    <string name="label_pie_chart_income">Pemasukan (%1$s)</string>
+    <string name="label_pie_chart_expense">Pengeluaran (%1$s)</string>
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
+
+
 </resources>
