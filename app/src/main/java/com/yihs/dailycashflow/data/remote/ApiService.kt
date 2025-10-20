@@ -2,7 +2,6 @@ package com.yihs.dailycashflow.data.remote
 
 import com.yihs.dailycashflow.data.model.LoginResponse
 import com.yihs.dailycashflow.data.model.RegisterResponse
-import com.yihs.dailycashflow.data.model.Transaction
 import com.yihs.dailycashflow.data.model.TransactionResponse
 import retrofit2.Response
 import retrofit2.http.Field
@@ -34,6 +33,5 @@ interface ApiService {
         @Query("type") type: String,
         @Query("page") page: Int
     ): Response<TransactionResponse>
-
 
 }

@@ -9,11 +9,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.yihs.dailycashflow.R
-import com.yihs.dailycashflow.data.ResultForm
+import com.yihs.dailycashflow.data.Result
 import com.yihs.dailycashflow.databinding.ActivityLoginBinding
 import com.yihs.dailycashflow.ui.main.MainActivity
-import com.yihs.dailycashflow.utils.Constant
 import com.yihs.dailycashflow.utils.showSnackBar
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,26 +37,29 @@ class LoginActivity : AppCompatActivity() {
         onForgetPasswordClicked()
         onRegisterNowClicked()
 
-        lifecycleScope.launch {
-            viewModel.loginState.collect { result->
-                when(result){
-                    is ResultForm.Idle -> {
-                        showLoading(false)
-                    }
-                    is ResultForm.Loading -> {
-                        showLoading(true)
-                    }
-
-                    is ResultForm.Success -> {
-                        showLoading(false)
+        viewModel.loginState.observe(this){ result ->
+            when(result){
+                is Result.Loading ->{
+                    showLoading(true)
+                }
+                is Result.Success -> {
+                    showLoading(false)
+                    lifecycleScope.launch {
+                        viewModel.saveSession(result.data)
+                        //delay memastikan session disimpan baru pindah halaman
+                        delay(300)
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
-                    is ResultForm.Error -> {
-                        showLoading(false)
-                        showSnackBar(result.message)
-                    }
+                }
+                is Result.Error -> {
+                    showLoading(false)
+                    showSnackBar(result.message)
+                }
+                is Result.ErrorNetwork -> {
+                    showLoading(false)
+                    showSnackBar(getString(R.string.please_check_network))
                 }
             }
         }
@@ -71,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
             if(email.isNotEmpty() && password.isNotEmpty()){
                 viewModel.login(email, password)
             }else{
-                showSnackBar(Constant.FILL_ALL_FIELDS)
+                showSnackBar(getString(R.string.please_fill_all_fields))
             }
         }
     }

@@ -52,6 +52,8 @@
     <string name="amount_item_income_transaction">+ %1$s</string>
     <string name="amount_item_expense_transaction">- %1$s</string>
     <string name="empty_transaction">Belum ada transaksi</string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="please_check_network">Please check your internet connection</string>
 
 
 </resources>

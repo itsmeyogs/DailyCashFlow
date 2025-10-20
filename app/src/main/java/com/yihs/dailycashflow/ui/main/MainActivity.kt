@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.databinding.ActivityMainBinding
 import com.yihs.dailycashflow.ui.auth.AuthViewModel
@@ -16,7 +15,6 @@ import com.yihs.dailycashflow.ui.auth.LoginActivity
 import com.yihs.dailycashflow.ui.category.CategoryFragment
 import com.yihs.dailycashflow.ui.home.HomeFragment
 import com.yihs.dailycashflow.ui.profile.ProfileFragment
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -26,23 +24,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        lifecycleScope.launch {
-            viewModel.getSession().collect {
-                Log.d("Get", "get Session ${it.token}")
-                if(it.token.isEmpty() || it.token == ""){
-
-                    val intent = Intent(this@MainActivity, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }else{
-                    setUpUI(savedInstanceState)
-                    setUpNavigationBar()
-                }
+        viewModel.getSession().observe(this){ session ->
+            Log.d("check session", "get Session $session")
+            if(session.token.isEmpty() || session.token == ""){
+                val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                setUpUI(savedInstanceState)
+                setUpNavigationBar()
             }
         }
-
-
     }
 
     private fun setUpUI(savedInstanceState: Bundle?){

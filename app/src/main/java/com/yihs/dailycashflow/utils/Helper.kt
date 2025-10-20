@@ -5,7 +5,14 @@ import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.google.android.material.color.MaterialColors
 import com.google.gson.Gson
+import com.yihs.dailycashflow.data.Result
 import com.yihs.dailycashflow.data.model.ErrorResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import okio.IOException
+import retrofit2.Response
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -14,6 +21,29 @@ import java.util.Locale
 
 
 object Helper {
+
+    fun <T> apiCall(
+        apiService: suspend () -> Response<T>
+    ): Flow<Result<T>> = flow {
+        emit(Result.Loading)
+        try {
+            val response = apiService()
+            if(response.isSuccessful){
+                response.body()?.let {
+                    emit(Result.Success(it, response.code()))
+                }?: run{
+                    emit(Result.Error(Constant.RESULT_BODY_NULL, response.code()))
+                }
+            }else{
+                val errorJson = response.errorBody()?.string()
+                emit(Result.Error(parseErrorMessage(errorJson), response.code()))
+            }
+        }catch (_: IOException){
+            emit(Result.ErrorNetwork)
+        }catch (e: Exception){
+            emit(Result.Error(e.message ?: Constant.RESULT_UNKNOWN_ERROR, null))
+        }
+    }.flowOn(Dispatchers.IO)
 
     fun parseErrorMessage(errorJson : String?) : String{
         return try {

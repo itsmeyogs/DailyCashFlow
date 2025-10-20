@@ -6,13 +6,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import com.yihs.dailycashflow.R
-import com.yihs.dailycashflow.data.ResultForm
+import com.yihs.dailycashflow.data.Result
 import com.yihs.dailycashflow.databinding.ActivityRegisterBinding
-import com.yihs.dailycashflow.utils.Constant
 import com.yihs.dailycashflow.utils.showSnackBar
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -33,29 +30,29 @@ class RegisterActivity : AppCompatActivity() {
         onSignUpClicked()
         onLoginClicked()
 
-        lifecycleScope.launch {
-            viewModel.registerState.collect { result->
-                when(result) {
-                    is ResultForm.Idle -> {
-                        showLoading(false)
-                    }
-                    is ResultForm.Loading -> {
-                        showLoading(true)
-                    }
-                    is ResultForm.Success -> {
-                        showLoading(false)
-                        showSnackBar(
-                            message = result.data.message,
-                            actionText = getString(R.string.login),
-                            action = { finish() }
-                        )
-                    }
-                    is ResultForm.Error -> {
-                        showLoading(false)
-                        showSnackBar(result.message)
-                    }
+        viewModel.registerState.observe(this){ result ->
+            when(result){
+                is Result.Loading ->{
+                    showLoading(true)
+                }
+                is Result.Success -> {
+                    showLoading(false)
+                    showSnackBar(
+                        message = result.data.message,
+                        actionText = getString(R.string.login),
+                        action = { finish() }
+                    )
+                }
+                is Result.Error -> {
+                    showLoading(false)
+                    showSnackBar(result.message)
+                }
+                is Result.ErrorNetwork -> {
+                    showLoading(false)
+                    showSnackBar(getString(R.string.please_check_network))
                 }
             }
+
         }
     }
 
@@ -69,7 +66,7 @@ class RegisterActivity : AppCompatActivity() {
             if(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()){
                 viewModel.register(name, email, password)
             }else{
-                showSnackBar(Constant.FILL_ALL_FIELDS)
+                showSnackBar(getString(R.string.please_fill_all_fields))
             }
         }
     }

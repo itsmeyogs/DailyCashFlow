@@ -14,21 +14,4 @@ data class TransactionResponse(
 	val message: String
 )
 
-data class Transaction(
-
-	@field:SerializedName("timeStamp")
-	val timeStamp: Int,
-
-	@field:SerializedName("amount")
-	val amount: Long,
-
-	@field:SerializedName("description")
-	val description: String,
-
-	@field:SerializedName("id")
-	val id: Int,
-
-	@field:SerializedName("category")
-	val category: Category
-)
 

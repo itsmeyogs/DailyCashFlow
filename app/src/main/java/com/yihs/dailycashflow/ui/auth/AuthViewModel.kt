@@ -1,48 +1,58 @@
 package com.yihs.dailycashflow.ui.auth
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.yihs.dailycashflow.data.ResultForm
+import com.yihs.dailycashflow.data.Result
 import com.yihs.dailycashflow.data.model.LoginResponse
 import com.yihs.dailycashflow.data.model.RegisterResponse
 import com.yihs.dailycashflow.data.model.User
 import com.yihs.dailycashflow.repository.Repository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+
 
 class AuthViewModel(private val repository: Repository) : ViewModel() {
 
-    private  val _loginState = MutableStateFlow<ResultForm<LoginResponse>>(ResultForm.Idle)
-    val loginState : StateFlow<ResultForm<LoginResponse>> = _loginState
-    private val _registerState = MutableStateFlow<ResultForm<RegisterResponse>> (ResultForm.Idle)
-    val registerState : StateFlow<ResultForm<RegisterResponse>> = _registerState
 
+    private val _loginState = MutableLiveData<Result<LoginResponse>>()
+    val loginState: MutableLiveData<Result<LoginResponse>> = _loginState
 
-    fun getSession(): Flow<User> {
-        return repository.getSession()
-    }
+    private val _registerState = MutableLiveData<Result<RegisterResponse>>()
+    val registerState: MutableLiveData<Result<RegisterResponse>> = _registerState
+
 
     fun login(email: String, password: String){
         viewModelScope.launch {
-            repository.login(email, password).collect {
-                if(it is ResultForm.Success) {
-                    repository.saveSession(it.data)
-                }
-                _loginState.value = it
+            repository.login(email, password).collect { result->
+                _loginState.value = result
             }
         }
     }
 
-
-    fun register(name: String, email: String, password: String){
+    fun register(name: String, email:String, password:String){
         viewModelScope.launch {
-            repository.register(name,email,password).collect {
-                _registerState.value = it
+            repository.register(name, email, password).collect { result ->
+                _registerState.value = result
             }
         }
     }
+
+    fun saveSession(data: LoginResponse){
+        viewModelScope.launch {
+            repository.saveSession(data)
+        }
+    }
+
+    fun getSession(): LiveData<User>{
+        return repository.getSession().asLiveData()
+    }
+
+
+
+
+
 
 
 
