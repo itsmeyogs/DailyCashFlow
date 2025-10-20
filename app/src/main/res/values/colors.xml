@@ -61,6 +61,9 @@
     <color name="background_color_fab">#48BFE3</color>
     <color name="color_icon_fab">@color/white</color>
 
+    <color name="background_color_splash">#FFFFFF</color>
+    <color name="color_item_splash">#4EA8DE</color>
+
 
 
 

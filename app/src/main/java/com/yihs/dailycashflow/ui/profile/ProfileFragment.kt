@@ -1,5 +1,6 @@
 package com.yihs.dailycashflow.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.databinding.FragmentProfileBinding
+import com.yihs.dailycashflow.ui.auth.LoginActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -49,10 +51,11 @@ class ProfileFragment : Fragment() {
                 showLoading(true)
                 delay(2000)
                 showLoading(false)
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
                 viewModel.removeSession()
             }
-
-
         }
     }
 

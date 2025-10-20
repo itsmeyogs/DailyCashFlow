@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DailyCashFlow</string>
+    <string name="app_name">Daily CashFlow</string>
     <string name="login_title">Lets Sign you in</string>
     <string name="login_desc">Welcome Back ,\nYou have been missed</string>
     <string name="email">Email</string>
@@ -52,6 +52,9 @@
     <string name="amount_item_income_transaction">+ %1$s</string>
     <string name="amount_item_expense_transaction">- %1$s</string>
     <string name="empty_transaction">Belum ada transaksi</string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="please_check_network">Please check your internet connection</string>
+    <string name="retry">Retry</string>
 
 
 </resources>

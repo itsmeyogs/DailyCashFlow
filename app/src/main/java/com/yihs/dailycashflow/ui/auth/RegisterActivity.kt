@@ -6,12 +6,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import com.yihs.dailycashflow.R
+import com.yihs.dailycashflow.data.Result
 import com.yihs.dailycashflow.databinding.ActivityRegisterBinding
-import com.yihs.dailycashflow.utils.Resource
 import com.yihs.dailycashflow.utils.showSnackBar
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -29,13 +27,37 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
 
-        validateCredential()
-        observeRegisterState()
-        onClickLogin()
+        onSignUpClicked()
+        onLoginClicked()
+
+        viewModel.registerState.observe(this){ result ->
+            when(result){
+                is Result.Loading ->{
+                    showLoading(true)
+                }
+                is Result.Success -> {
+                    showLoading(false)
+                    showSnackBar(
+                        message = result.data.message,
+                        actionText = getString(R.string.login),
+                        action = { finish() }
+                    )
+                }
+                is Result.Error -> {
+                    showLoading(false)
+                    showSnackBar(result.message)
+                }
+                is Result.ErrorNetwork -> {
+                    showLoading(false)
+                    showSnackBar(getString(R.string.please_check_network))
+                }
+            }
+
+        }
     }
 
 
-    private fun validateCredential(){
+    private fun onSignUpClicked(){
         binding.btnSignUp.setOnClickListener {
             val name = binding.etName.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
@@ -44,41 +66,11 @@ class RegisterActivity : AppCompatActivity() {
             if(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()){
                 viewModel.register(name, email, password)
             }else{
-                showSnackBar("Please fill all fields")
+                showSnackBar(getString(R.string.please_fill_all_fields))
             }
         }
     }
 
-    private fun observeRegisterState(){
-        lifecycleScope.launch {
-            viewModel.registerState.collect { resource ->
-                when(resource){
-                    is Resource.Idle -> {
-                        showLoading(false)
-                    }
-                    is Resource.Loading -> {
-                        showLoading(true)
-                    }
-                    is Resource.Success -> {
-                        showLoading(false)
-                        //show message with action
-                        showSnackBar(
-                            message = resource.data.message,
-                            actionText = "Login",
-                            action = { finish() }
-                        )
-
-
-                    }
-                    is Resource.Error -> {
-                        showLoading(false)
-                        //show message
-                        showSnackBar(resource.message)
-                    }
-                }
-            }
-        }
-    }
 
     private fun showLoading(isShow: Boolean = false){
         binding.apply {
@@ -93,7 +85,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-    private fun onClickLogin(){
+    private fun onLoginClicked(){
         binding.btnLogin.setOnClickListener {
             finish()
         }

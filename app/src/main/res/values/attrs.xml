@@ -47,11 +47,15 @@
         <attr name="colorValueIncomeItemTransactionHistory" format="color"/>
         <attr name="colorValueExpenseItemTransactionHistory" format="color"/>
         <attr name="colorValueDefaultItemTransactionHistory" format="color"/>
-        <attr name="colorDescItemTransactionHistory" format="color"/>""
+        <attr name="colorDescItemTransactionHistory" format="color"/>
 
         <!--  fab      -->
         <attr name="backgroundColorFAB" format="color"/>
         <attr name="colorIconFAB" format="color"/>
+
+        <!--  splash      -->
+        <attr name="backgroundColorSplash" format="color"/>
+        <attr name="colorItemSplash" format="color"/>
 
     </declare-styleable>
 </resources>
