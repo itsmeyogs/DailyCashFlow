@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yihs.dailycashflow.data.Result
 import com.yihs.dailycashflow.data.model.RangeDateFilter
-import com.yihs.dailycashflow.data.model.Summary
+import com.yihs.dailycashflow.data.model.SummaryResponse
 import com.yihs.dailycashflow.data.model.TransactionResponse
 import com.yihs.dailycashflow.repository.Repository
 import com.yihs.dailycashflow.utils.Constant
@@ -16,6 +16,19 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 
     private val _transactionHistoryState = MutableLiveData<Result<TransactionResponse>>()
     val transactionHistoryState: MutableLiveData<Result<TransactionResponse>> = _transactionHistoryState
+
+    private val _summaryTransactionState = MutableLiveData<Result<SummaryResponse>>()
+    val summaryTransactionState: MutableLiveData<Result<SummaryResponse>> = _summaryTransactionState
+
+
+    fun getSummaryTransaction(filterRange: RangeDateFilter){
+        viewModelScope.launch {
+            val range = filterRange.key
+            repository.getSummary(range).collect { result ->
+                _summaryTransactionState.value = result
+            }
+        }
+    }
 
     fun getTransactionHistory(){
         viewModelScope.launch {
@@ -31,14 +44,13 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
     val selectedFilterRangeDate: LiveData<RangeDateFilter> = _selectedFilterRangeDate
 
     fun changeSelectedFilterRangeDate(value :RangeDateFilter){
+        getSummaryTransaction(value)
         _selectedFilterRangeDate.value = value
     }
 
-    //pie chart
-    val exampleDataPieChart = Summary(income = 200000f, expense = 60000f)
-
-
     init {
+
+        selectedFilterRangeDate.value?.let { getSummaryTransaction(it) }
         getTransactionHistory()
     }
 

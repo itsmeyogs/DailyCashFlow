@@ -22,4 +22,6 @@ class Repository(private val apiService: ApiService, private val userPreference:
 
     fun getTransactionDashboard(orderBy: String = Constant.ORDER_BY_NEWEST, type: String = Constant.CATEGORY_TYPE_ALL, page: Int = 1) = Helper.apiCall { apiService.getTransaction(orderBy, type, page) }
 
+    fun getSummary(range: String) = Helper.apiCall { apiService.getSummary(range) }
+
 }

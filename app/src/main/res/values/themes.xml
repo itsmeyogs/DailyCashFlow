@@ -69,10 +69,6 @@
 
 
 
-    <style name="Theme.DailyCashFlow.Splash" parent="Base.Theme.DailyCashFlow">
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
-
 
 
 </resources>
