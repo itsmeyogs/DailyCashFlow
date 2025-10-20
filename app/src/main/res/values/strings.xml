@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DailyCashFlow</string>
+    <string name="app_name">Daily CashFlow</string>
     <string name="login_title">Lets Sign you in</string>
     <string name="login_desc">Welcome Back ,\nYou have been missed</string>
     <string name="email">Email</string>
