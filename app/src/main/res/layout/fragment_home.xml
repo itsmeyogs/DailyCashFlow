@@ -687,6 +687,23 @@
                app:layout_constraintEnd_toEndOf="parent"
                />
 
+           <com.google.android.material.textview.MaterialTextView
+               android:id="@+id/tv_empty_transaction"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="48dp"
+               android:fontFamily="@font/poppins_medium"
+               android:letterSpacing="0.01"
+               android:text="@string/empty_transaction"
+               android:textColor="?attr/colorTitleTransactionHistoryDashboard"
+               android:textSize="12sp"
+               android:visibility="gone"
+               app:layout_constraintTop_toBottomOf="@id/tv_title_transaction_history"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               />
+
+
            <com.google.android.material.progressindicator.CircularProgressIndicator
                android:id="@+id/loading_indicator_transaction_history"
                android:layout_width="wrap_content"

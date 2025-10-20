@@ -92,7 +92,7 @@ object Helper {
     }
 
 
-    fun convertTimeStampToStringDate(timestamp: Long, withDayName: Boolean = false) : String{
+    fun convertTimeStampToStringDate(timestamp: Int, withDayName: Boolean = false) : String{
         val localeId = Locale("in", "ID")
         //set pattern with day name or not
         val pattern = if(withDayName) "EEEE, dd MMMM yyyy" else "dd MMMM yyyy"

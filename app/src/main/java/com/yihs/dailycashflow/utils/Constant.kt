@@ -1,5 +1,7 @@
 package com.yihs.dailycashflow.utils
 
+import com.yihs.dailycashflow.data.model.RangeDateFilter
+
 class Constant {
     companion object{
 
@@ -13,6 +15,13 @@ class Constant {
         const val RESULT_BODY_NULL = "Response Body null"
         const val RESULT_UNKNOWN_ERROR = "An Unknown error occurred"
 
+
+        val filterRangeDateOptions = listOf(
+            RangeDateFilter("all", "Semua"),
+            RangeDateFilter("daily", "Hari ini"),
+            RangeDateFilter("weekly", "Minggu ini"),
+            RangeDateFilter("monthly", "Bulan Ini")
+        )
 
     }
 }

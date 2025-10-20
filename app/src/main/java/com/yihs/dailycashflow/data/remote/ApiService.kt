@@ -28,7 +28,7 @@ interface ApiService {
     ): Response<RegisterResponse>
 
     @GET("cashflow")
-    suspend fun getCashFlows(
+    suspend fun getTransaction(
         @Query("order_by") orderBy: String,
         @Query("type") type: String,
         @Query("page") page: Int
