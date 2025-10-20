@@ -27,14 +27,14 @@
     <string name="range_date_filter_monthly">Bulan ini</string>
 
     <string name="title_remaining_balance">Sisa Saldo</string>
-    <string name="example_value_remaining_balance">Rp 70.000</string>
-    <string name="example_desc_remaining_balance">Sisa saldo pertanggal 24 Juni 2025</string>
+    <string name="example_value_remaining_balance">Rp 0</string>
+    <string name="desc_remaining_balance">Sisa saldo pertanggal %1$s</string>
     <string name="title_income">Pemasukan</string>
-    <string name="example_value_income">Rp 200.000</string>
-    <string name="example_desc_income">Update 24 Juni 2025</string>
+    <string name="example_value_income">Rp 0</string>
+    <string name="desc_income">Update %1$s</string>
     <string name="title_expense">Pengeluaran</string>
-    <string name="example_value_expense">Rp 60.000</string>
-    <string name="example_desc_expense">Update 24 Juni 2025</string>
+    <string name="example_value_expense">Rp 0</string>
+    <string name="desc_expense">Update %1$s</string>
     <string name="title_summary">Ringkasan</string>
     <string name="title_summary_income">Pemasukan :</string>
     <string name="title_summary_expense">Pengeluaran :</string>

@@ -39,6 +39,7 @@
     <color name="color_value_income_card_summary">#19A36D</color>
     <color name="color_value_expense_card_summary">#FF5151</color>
     <color name="color_action_card_summary">@color/color_action_see_more</color>
+    <color name="color_default_pie_chart">#D3D3D3</color>
     <color name="color_income_pie_chart">#06C97D</color>
     <color name="color_expense_pie_chart">#FF5151</color>
     <color name="color_bg_spinner">#9DFFE3</color>

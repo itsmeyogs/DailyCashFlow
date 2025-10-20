@@ -32,6 +32,7 @@
         <attr name="colorValueIncomeCardSummary" format="color"/>
         <attr name="colorValueExpenseCardSummary" format="color"/>
         <attr name="colorActionCardSummary" format="color"/>
+        <attr name="colorDefaultPieChart" format="color"/>
         <attr name="colorIncomePieChart" format="color"/>
         <attr name="colorExpensePieChart" format="color"/>
         <attr name="colorBgSpinner" format="color"/>

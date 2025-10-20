@@ -36,6 +36,7 @@
         <item name="colorValueIncomeCardSummary">@color/color_value_income_card_summary</item>
         <item name="colorValueExpenseCardSummary">@color/color_value_expense_card_summary</item>
         <item name="colorActionCardSummary">@color/color_action_card_summary</item>
+        <item name="colorDefaultPieChart">@color/color_default_pie_chart</item>
         <item name="colorIncomePieChart">@color/color_income_pie_chart</item>
         <item name="colorExpensePieChart">@color/color_expense_pie_chart</item>
         <item name="colorBgSpinner">@color/color_bg_spinner</item>
@@ -66,10 +67,6 @@
     </style>
 
     <style name="Theme.DailyCashFlow" parent="Base.Theme.DailyCashFlow" />
-
-    <style name="Theme.DailyCashFlow.Splash" parent="Base.Theme.DailyCashFlow">
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
 
 
 </resources>

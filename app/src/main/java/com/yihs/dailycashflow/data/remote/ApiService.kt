@@ -2,6 +2,7 @@ package com.yihs.dailycashflow.data.remote
 
 import com.yihs.dailycashflow.data.model.LoginResponse
 import com.yihs.dailycashflow.data.model.RegisterResponse
+import com.yihs.dailycashflow.data.model.SummaryResponse
 import com.yihs.dailycashflow.data.model.TransactionResponse
 import retrofit2.Response
 import retrofit2.http.Field
@@ -33,5 +34,10 @@ interface ApiService {
         @Query("type") type: String,
         @Query("page") page: Int
     ): Response<TransactionResponse>
+
+    @GET("cashflow/summary")
+    suspend fun getSummary(
+        @Query("range") range: String,
+    ) : Response<SummaryResponse>
 
 }

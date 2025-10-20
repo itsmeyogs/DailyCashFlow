@@ -5,6 +5,10 @@ import com.yihs.dailycashflow.data.model.RangeDateFilter
 class Constant {
     companion object{
 
+        const val DATE_WITH_DAY_NAME = "EEEE, dd MMMM yyyy"
+        const val DATE_WITHOUT_DAY_NAME = "dd MMMM yyyy"
+        const val DATE_WITHOUT_DAY_NAME_WITH_SHORT_MONTH_NAME = "dd MMM yyyy"
+
         const val CATEGORY_TYPE_ALL = "ALL"
         const val CATEGORY_TYPE_INCOME = "INCOME"
         const val CATEGORY_TYPE_EXPENSE = "EXPENSE"

@@ -57,10 +57,17 @@ object Helper {
 
     fun toPercent(valueRatio : Float) : String{
         val numberFormat = NumberFormat.getPercentInstance()
+
+        //safety value
+        val safeValue = when {
+            valueRatio.isNaN() || valueRatio.isInfinite() -> 0f
+            else -> valueRatio
+        }
+
         //show maximum 2 decimal after ,
         numberFormat.maximumFractionDigits = 2
         //convert percent and return
-        return numberFormat.format(valueRatio)
+        return numberFormat.format(safeValue)
     }
 
     fun getColorFromAttr(context: Context, attrResId: Int, defaultColor: Int) : Int{
@@ -92,16 +99,13 @@ object Helper {
     }
 
 
-    fun convertTimeStampToStringDate(timestamp: Int, withDayName: Boolean = false) : String{
+    fun convertTimeStampToStringDate(timestamp: Int, patternType: String = Constant.DATE_WITHOUT_DAY_NAME) : String{
         val localeId = Locale("in", "ID")
-        //set pattern with day name or not
-        val pattern = if(withDayName) "EEEE, dd MMMM yyyy" else "dd MMMM yyyy"
-
         //convert to milliseconds
         val milliSeconds = timestamp * 1000L
 
         //create object SimpleDateFormat
-        val formatter = SimpleDateFormat(pattern, localeId)
+        val formatter = SimpleDateFormat(patternType, localeId)
         //create object date from timestamp
         val date = Date(milliSeconds)
         return formatter.format(date)
