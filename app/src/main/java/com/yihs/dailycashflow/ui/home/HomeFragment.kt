@@ -73,8 +73,7 @@ class HomeFragment : Fragment() {
                     showDataSummary(data)
                     //submit data to pie chart
                     setUpPieChart(data)
-                    //handle when data zero
-                    handleDataSummaryZero(data)
+
                 }
                 is Result.Error -> {
                     showLoading(loadingSummary = false)
@@ -89,24 +88,6 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun handleDataSummaryZero(data : Summary){
-        binding.apply {
-            if(data.income > 0 || data.expense > 0){
-                pieChartSummary.visibility = View.VISIBLE
-                layoutLabelPieIncome.visibility = View.VISIBLE
-                layoutLabelPieExpense.visibility = View.VISIBLE
-            }else{
-                pieChartSummary.visibility = View.GONE
-                layoutLabelPieIncome.visibility = View.GONE
-                layoutLabelPieExpense.visibility = View.GONE
-            }
-        }
-
-    }
-
-
-
-
     private fun setUpPieChart(data: Summary){
         val pieChart = binding.pieChartSummary
 
@@ -116,24 +97,26 @@ class HomeFragment : Fragment() {
         //show percent label manual, not in pie chart
         setUpLabelPieChart(income, expense)
 
-        //convert data to pieEntry
-        val pieChartEntries = listOf(
+        //set value and colors
+        val pieChartEntries = arrayListOf<PieEntry>()
+        val colors = arrayListOf<Int>()
+
+        if(income > 0f || expense > 0f){
             //expense dulu agar income sebelah kiri di pie chart
-            PieEntry(expense, resources.getString(R.string.expense)),
-            PieEntry(income, resources.getString(R.string.income))
-        )
+            pieChartEntries.add(PieEntry(expense, resources.getString(R.string.expense)))
+            pieChartEntries.add(PieEntry(income, resources.getString(R.string.income)))
 
-        //set colors pie chart
-        val colors = listOf(
-            Helper.getColorFromAttr(requireContext(), R.attr.colorExpensePieChart, Color.RED),
-            Helper.getColorFromAttr(requireContext(), R.attr.colorIncomePieChart, Color.GREEN)
+            colors.add(Helper.getColorFromAttr(requireContext(), R.attr.colorExpensePieChart, Color.RED),)
+            colors.add(Helper.getColorFromAttr(requireContext(), R.attr.colorIncomePieChart, Color.GREEN))
 
-        )
+        }else{
+            pieChartEntries.add(PieEntry(100f, ""))
+
+            colors.add(Helper.getColorFromAttr(requireContext(), R.attr.colorDefaultPieChart, Color.LTGRAY))
+        }
 
         //create dataset pie from entries
         val dataset = PieDataSet(pieChartEntries,"")
-
-
 
         dataset.colors = colors
 
@@ -164,8 +147,16 @@ class HomeFragment : Fragment() {
         //create pie data
         val pieData = PieData(dataset)
         pieChart.data = pieData
-        //show with animate
-        pieChart.animateY(1000)
+
+        if(income > 0 || expense > 0){
+            //show with animate when hasn't value 0
+            pieChart.animateY(300)
+        }else{
+            pieChart.invalidate()
+        }
+
+
+
     }
 
     private fun showDataSummary(data: Summary){

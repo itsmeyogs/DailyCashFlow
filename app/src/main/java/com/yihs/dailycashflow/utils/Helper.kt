@@ -57,10 +57,17 @@ object Helper {
 
     fun toPercent(valueRatio : Float) : String{
         val numberFormat = NumberFormat.getPercentInstance()
+
+        //safety value
+        val safeValue = when {
+            valueRatio.isNaN() || valueRatio.isInfinite() -> 0f
+            else -> valueRatio
+        }
+
         //show maximum 2 decimal after ,
         numberFormat.maximumFractionDigits = 2
         //convert percent and return
-        return numberFormat.format(valueRatio)
+        return numberFormat.format(safeValue)
     }
 
     fun getColorFromAttr(context: Context, attrResId: Int, defaultColor: Int) : Int{
