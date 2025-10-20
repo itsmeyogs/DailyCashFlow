@@ -10,30 +10,61 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.data.model.Transaction
+import com.yihs.dailycashflow.databinding.ItemEmptyTransactionHistoryBinding
 import com.yihs.dailycashflow.databinding.ItemTransactionHistoryBinding
 import com.yihs.dailycashflow.utils.Constant
 import com.yihs.dailycashflow.utils.Helper
 
 
-class HomeAdapter: ListAdapter<Transaction, HomeAdapter.HomeViewHolder>(DIFF_CALLBACK) {
+class HomeAdapter: ListAdapter<Transaction, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
     var onClickItem: ((Transaction) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val binding = ItemTransactionHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HomeViewHolder(binding)
+    override fun getItemCount(): Int {
+        return if(super.getItemCount() == 0) 1 else super.getItemCount()
     }
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        val item = getItem(position)
-        //bind item to view
-        holder.bind(item)
+    override fun getItemViewType(position: Int): Int {
 
-        //set On Click Item
-        holder.itemView.setOnClickListener {
-            onClickItem?.invoke(item)
+        return if (super.getItemCount() == 0) {
+            VIEW_TYPE_EMPTY
+        } else {
+            VIEW_TYPE_ITEM
         }
     }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == VIEW_TYPE_ITEM) {
+            val binding = ItemTransactionHistoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            HomeViewHolder(binding)
+        } else {
+            val binding = ItemEmptyTransactionHistoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            EmptyViewHolder(binding)
+        }
+
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if(holder is HomeViewHolder && super.getItemCount() > 0){
+            val item = getItem(position)
+            //bind item to view
+            holder.bind(item)
+            //set On Click Item
+            holder.itemView.setOnClickListener { onClickItem?.invoke(item) }
+        }
+
+    }
+
+
 
 
     class HomeViewHolder(private val binding: ItemTransactionHistoryBinding) : RecyclerView.ViewHolder(binding.root){
@@ -114,7 +145,13 @@ class HomeAdapter: ListAdapter<Transaction, HomeAdapter.HomeViewHolder>(DIFF_CAL
         }
     }
 
+    //view holder for empty transaction
+    class EmptyViewHolder(binding: ItemEmptyTransactionHistoryBinding): RecyclerView.ViewHolder(binding.root)
+
     companion object{
+
+        private const val VIEW_TYPE_EMPTY = 0
+        private const val VIEW_TYPE_ITEM = 1
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Transaction>(){
             override fun areItemsTheSame(oldItem: Transaction, newItem: Transaction): Boolean {
                 return oldItem.id == newItem.id

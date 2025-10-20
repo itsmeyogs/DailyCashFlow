@@ -51,6 +51,7 @@
 
     <string name="amount_item_income_transaction">+ %1$s</string>
     <string name="amount_item_expense_transaction">- %1$s</string>
+    <string name="empty_transaction">Belum ada transaksi</string>
 
 
 </resources>

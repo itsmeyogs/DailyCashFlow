@@ -44,8 +44,10 @@ class HomeFragment : Fragment() {
         setUpPieChart()
 
         //set rv transaction to linear layout
-        val layoutManager = LinearLayoutManager(requireContext())
-        binding.rvTransactionHistory.layoutManager = layoutManager
+        binding.rvTransactionHistory.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = homeAdapter
+        }
 
         //handle on click item transaction
         homeAdapter.onClickItem = { data ->
@@ -53,15 +55,11 @@ class HomeFragment : Fragment() {
         }
 
 
+        //update data transaction
         viewModel.transactionHistory.observe(viewLifecycleOwner){data ->
-            setDataTransaction(data)
+            homeAdapter.submitList(data)
         }
 
-    }
-
-    private fun setDataTransaction(data: List<Transaction>){
-        homeAdapter.submitList(data)
-        binding.rvTransactionHistory.adapter = homeAdapter
     }
 
 
