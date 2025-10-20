@@ -64,18 +64,18 @@ class HomeFragment : Fragment() {
         viewModel.cashFlowSummaryTransactionState.observe(viewLifecycleOwner){ result ->
             when(result){
                 is Result.Loading -> {
-                    showLoading(loadingCashFlow = true)
+                    showLoadingCashFlow( true)
                 }
                 is Result.Success -> {
-                    showLoading(loadingCashFlow = false)
                     showCashFlowSummaryTransaction(result.data)
+                    showLoadingCashFlow( false)
                 }
                 is Result.Error -> {
-                    showLoading(loadingCashFlow = false)
+                    showLoadingCashFlow( false)
                     showSnackBar(result.message)
                 }
                 is Result.ErrorNetwork -> {
-                    showLoading(loadingCashFlow = false)
+                    showLoadingCashFlow( false)
                     showSnackBar(getString(R.string.please_check_network))
                 }
             }
@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
             setUpPieChart(0, 0)
             when(result){
                 is Result.Loading -> {
-                    showLoading(loadingSummary = true)
+                    showLoadingSummary(true)
                 }
                 is Result.Success -> {
                     val data = result.data.data
@@ -118,15 +118,15 @@ class HomeFragment : Fragment() {
 
                     //submit data to pie chart
                     setUpPieChart(data.income, data.expense)
-                    showLoading(loadingSummary = false)
+                    showLoadingSummary(false)
 
                 }
                 is Result.Error -> {
-                    showLoading(loadingSummary = false)
+                    showLoadingSummary(false)
                     showSnackBar(result.message)
                 }
                 is Result.ErrorNetwork -> {
-                    showLoading(loadingSummary = false)
+                    showLoadingSummary(false)
                     showSnackBar(getString(R.string.please_check_network))
                 }
             }
@@ -267,7 +267,7 @@ class HomeFragment : Fragment() {
         viewModel.transactionHistoryState.observe(viewLifecycleOwner){ result ->
             when(result){
                 is Result.Loading -> {
-                    showLoading(loadingTransaction = true)
+                    showLoadingTransaction(true)
                 }
                 is Result.Success -> {
                     val data = result.data.data
@@ -275,14 +275,14 @@ class HomeFragment : Fragment() {
                     homeAdapter.submitList(data)
                     //handle when data empty
                     handleDataTransactionEmpty(data)
-                    showLoading(loadingTransaction = false)
+                    showLoadingTransaction(false)
                 }
                 is Result.Error -> {
-                    showLoading(loadingTransaction = false)
+                    showLoadingTransaction(false)
                     showSnackBar(result.message)
                 }
                 is Result.ErrorNetwork -> {
-                    showLoading(loadingTransaction = false)
+                    showLoadingTransaction(false)
                     showSnackBar(getString(R.string.please_check_network))
                 }
             }
@@ -308,9 +308,10 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun showLoading(loadingCashFlow: Boolean = false, loadingSummary: Boolean = false,loadingTransaction: Boolean = false){
+
+    private fun showLoadingCashFlow(isShow: Boolean ){
         binding.apply {
-            if(loadingCashFlow){
+            if(isShow){
                 loadingIndicatorCardRemainingBalance.visibility = View.VISIBLE
                 loadingIndicatorCardIncome.visibility = View.VISIBLE
                 loadingIndicatorCardExpense.visibility = View.VISIBLE
@@ -319,26 +320,33 @@ class HomeFragment : Fragment() {
                 layoutCardIncome.visibility = View.INVISIBLE
                 layoutCardExpense.visibility = View.INVISIBLE
             }else{
-                loadingIndicatorCardRemainingBalance.visibility = View.GONE
-                loadingIndicatorCardIncome.visibility = View.GONE
-                loadingIndicatorCardExpense.visibility = View.GONE
+                loadingIndicatorCardRemainingBalance.visibility = View.INVISIBLE
+                loadingIndicatorCardIncome.visibility = View.INVISIBLE
+                loadingIndicatorCardExpense.visibility = View.INVISIBLE
 
                 layoutCardRemainingBalance.visibility = View.VISIBLE
                 layoutCardIncome.visibility = View.VISIBLE
                 layoutCardExpense.visibility = View.VISIBLE
             }
+        }
+    }
 
-
-            if(loadingSummary){
+    private fun showLoadingSummary(isShow: Boolean){
+        binding.apply {
+            if(isShow){
                 loadingIndicatorCardSummary.visibility = View.VISIBLE
                 layoutCardSummary.visibility = View.INVISIBLE
             }else{
                 loadingIndicatorCardSummary.visibility = View.GONE
                 layoutCardSummary.visibility = View.VISIBLE
             }
+        }
+    }
 
+    private fun showLoadingTransaction(isShow: Boolean){
+        binding.apply {
             //loading transaction history
-            if(loadingTransaction){
+            if(isShow){
                 loadingIndicatorTransactionHistory.visibility = View.VISIBLE
                 rvTransactionHistory.visibility = View.GONE
             }else{
@@ -347,6 +355,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
 
 
 
