@@ -8,7 +8,17 @@ data class SummaryResponse(
 	val data: Summary,
 
 	@field:SerializedName("message")
-	val message: String
+	val message: String,
+
+	@field:SerializedName("range")
+	val range: String,
+
+	@field:SerializedName("startTime")
+	val startTime: Int,
+
+	@field:SerializedName("endTime")
+	val endTime: Int,
+
 )
 
 data class Summary(
@@ -21,9 +31,6 @@ data class Summary(
 
 	@field:SerializedName("balance")
 	val balance: Long,
-
-	@field:SerializedName("range")
-	val range: String,
 
 	@field:SerializedName("expense")
 	val expense: Long

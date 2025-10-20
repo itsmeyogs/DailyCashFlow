@@ -15,7 +15,7 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.data.Result
-import com.yihs.dailycashflow.data.model.Summary
+import com.yihs.dailycashflow.data.model.SummaryResponse
 import com.yihs.dailycashflow.data.model.Transaction
 import com.yihs.dailycashflow.databinding.FragmentHomeBinding
 import com.yihs.dailycashflow.utils.Constant
@@ -54,25 +54,71 @@ class HomeFragment : Fragment() {
             handleClickItemTransaction(data)
         }
 
-
+        observeDataCashFlowSummary()
         setUpDropDownSummary()
         observeDataSummary()
         observeDataTransaction()
     }
 
+    private fun observeDataCashFlowSummary(){
+        viewModel.cashFlowSummaryTransactionState.observe(viewLifecycleOwner){ result ->
+            when(result){
+                is Result.Loading -> {
+                    showLoading(loadingCashFlow = true)
+                }
+                is Result.Success -> {
+                    showLoading(loadingCashFlow = false)
+                    showCashFlowSummaryTransaction(result.data)
+                }
+                is Result.Error -> {
+                    showLoading(loadingCashFlow = false)
+                    showSnackBar(result.message)
+                }
+                is Result.ErrorNetwork -> {
+                    showLoading(loadingCashFlow = false)
+                    showSnackBar(getString(R.string.please_check_network))
+                }
+            }
+        }
+    }
+
+
+
+
+    private fun showCashFlowSummaryTransaction(data: SummaryResponse){
+        binding.apply {
+            val time = Helper.convertTimeStampToStringDate(data.endTime, Constant.DATE_WITHOUT_DAY_NAME_WITH_SHORT_MONTH_NAME)
+
+            tvValueRemainingBalance.text = Helper.toRupiah(data.data.balance)
+            tvDescRemainingBalance.text = getString(R.string.desc_remaining_balance, time)
+
+            tvValueIncome.text = Helper.toRupiah(data.data.income)
+            tvDescIncome.text = getString(R.string.desc_income, time)
+
+            tvValueExpense.text = Helper.toRupiah(data.data.expense)
+            tvDescExpense.text = getString(R.string.desc_expense, time)
+
+
+        }
+    }
+
+
     private fun observeDataSummary(){
         viewModel.summaryTransactionState.observe(viewLifecycleOwner){ result ->
+            //set up 0 supaya jika error tetap tampil 0
+            setUpPieChart(0, 0)
             when(result){
                 is Result.Loading -> {
                     showLoading(loadingSummary = true)
                 }
                 is Result.Success -> {
-                    showLoading(loadingSummary = false)
                     val data = result.data.data
-                    //show data summary
-                    showDataSummary(data)
+
+                    Log.d("data summary", "data: $data")
+
                     //submit data to pie chart
-                    setUpPieChart(data)
+                    setUpPieChart(data.income, data.expense)
+                    showLoading(loadingSummary = false)
 
                 }
                 is Result.Error -> {
@@ -88,11 +134,14 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun setUpPieChart(data: Summary){
+    private fun setUpPieChart(dataIncome: Long, dataExpense: Long){
+        //show data summary
+        showDataSummary(dataIncome, dataExpense)
+
         val pieChart = binding.pieChartSummary
 
-        val income = data.income.toFloat()
-        val expense = data.expense.toFloat()
+        val income = dataIncome.toFloat()
+        val expense = dataExpense.toFloat()
 
         //show percent label manual, not in pie chart
         setUpLabelPieChart(income, expense)
@@ -148,21 +197,16 @@ class HomeFragment : Fragment() {
         val pieData = PieData(dataset)
         pieChart.data = pieData
 
-        if(income > 0 || expense > 0){
-            //show with animate when hasn't value 0
-            pieChart.animateY(300)
-        }else{
-            pieChart.invalidate()
-        }
+        pieChart.invalidate()
 
 
 
     }
 
-    private fun showDataSummary(data: Summary){
+    private fun showDataSummary(income: Long, expense: Long){
         binding.apply {
-            tvValueSummaryIncome.text = Helper.toRupiah(data.income)
-            tvValueSummaryExpense.text = Helper.toRupiah(data.expense)
+            tvValueSummaryIncome.text = Helper.toRupiah(income)
+            tvValueSummaryExpense.text = Helper.toRupiah(expense)
         }
     }
 
@@ -172,8 +216,8 @@ class HomeFragment : Fragment() {
         val expenseRatio = expense/total
 
         binding.apply {
-            tvLabelPieChartIncome.text = String.format(resources.getString(R.string.label_pie_chart_income), Helper.toPercent(incomeRatio))
-            tvLabelPieChartExpense.text = String.format(resources.getString(R.string.label_pie_chart_expense), Helper.toPercent(expenseRatio))
+            tvLabelPieChartIncome.text = getString(R.string.label_pie_chart_income, Helper.toPercent(incomeRatio))
+            tvLabelPieChartExpense.text = getString(R.string.label_pie_chart_expense, Helper.toPercent(expenseRatio))
         }
 
 
@@ -226,12 +270,12 @@ class HomeFragment : Fragment() {
                     showLoading(loadingTransaction = true)
                 }
                 is Result.Success -> {
-                    showLoading(loadingTransaction = false)
                     val data = result.data.data
                     //submit data to rv
                     homeAdapter.submitList(data)
                     //handle when data empty
                     handleDataTransactionEmpty(data)
+                    showLoading(loadingTransaction = false)
                 }
                 is Result.Error -> {
                     showLoading(loadingTransaction = false)
@@ -264,8 +308,27 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun showLoading(loadingSummary: Boolean = false,loadingTransaction: Boolean = false){
+    private fun showLoading(loadingCashFlow: Boolean = false, loadingSummary: Boolean = false,loadingTransaction: Boolean = false){
         binding.apply {
+            if(loadingCashFlow){
+                loadingIndicatorCardRemainingBalance.visibility = View.VISIBLE
+                loadingIndicatorCardIncome.visibility = View.VISIBLE
+                loadingIndicatorCardExpense.visibility = View.VISIBLE
+
+                layoutCardRemainingBalance.visibility = View.INVISIBLE
+                layoutCardIncome.visibility = View.INVISIBLE
+                layoutCardExpense.visibility = View.INVISIBLE
+            }else{
+                loadingIndicatorCardRemainingBalance.visibility = View.GONE
+                loadingIndicatorCardIncome.visibility = View.GONE
+                loadingIndicatorCardExpense.visibility = View.GONE
+
+                layoutCardRemainingBalance.visibility = View.VISIBLE
+                layoutCardIncome.visibility = View.VISIBLE
+                layoutCardExpense.visibility = View.VISIBLE
+            }
+
+
             if(loadingSummary){
                 loadingIndicatorCardSummary.visibility = View.VISIBLE
                 layoutCardSummary.visibility = View.INVISIBLE

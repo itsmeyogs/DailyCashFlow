@@ -20,7 +20,17 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
     private val _summaryTransactionState = MutableLiveData<Result<SummaryResponse>>()
     val summaryTransactionState: MutableLiveData<Result<SummaryResponse>> = _summaryTransactionState
 
+    private val _cashFlowSummaryTransactionState = MutableLiveData<Result<SummaryResponse>>()
+    val cashFlowSummaryTransactionState: MutableLiveData<Result<SummaryResponse>> = _cashFlowSummaryTransactionState
 
+
+    fun getCashFlowSummaryTransaction(){
+        viewModelScope.launch {
+            repository.getCashFlowSummary().collect { result ->
+                _cashFlowSummaryTransactionState.value = result
+            }
+        }
+    }
     fun getSummaryTransaction(filterRange: RangeDateFilter){
         viewModelScope.launch {
             val range = filterRange.key
@@ -40,7 +50,7 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 
 
     //set data filter range default to monthly
-    private val _selectedFilterRangeDate = MutableLiveData(Constant.filterRangeDateOptions[3])
+    private val _selectedFilterRangeDate = MutableLiveData(Constant.filterRangeDateOptions.last())
     val selectedFilterRangeDate: LiveData<RangeDateFilter> = _selectedFilterRangeDate
 
     fun changeSelectedFilterRangeDate(value :RangeDateFilter){
@@ -48,10 +58,15 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
         _selectedFilterRangeDate.value = value
     }
 
-    init {
 
+    fun getData(){
+        getCashFlowSummaryTransaction()
         selectedFilterRangeDate.value?.let { getSummaryTransaction(it) }
         getTransactionHistory()
+    }
+
+    init {
+       getData()
     }
 
 

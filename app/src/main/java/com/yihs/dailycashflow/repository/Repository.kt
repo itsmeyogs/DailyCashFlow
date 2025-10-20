@@ -24,4 +24,6 @@ class Repository(private val apiService: ApiService, private val userPreference:
 
     fun getSummary(range: String) = Helper.apiCall { apiService.getSummary(range) }
 
+    fun getCashFlowSummary() = Helper.apiCall { apiService.getSummary(Constant.filterRangeDateOptions.last().key) }
+
 }

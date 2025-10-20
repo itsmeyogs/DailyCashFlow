@@ -76,7 +76,7 @@ class HomeAdapter : ListAdapter<Transaction, HomeAdapter.HomeViewHolder>(DIFF_CA
             binding.apply {
                 tvTitle.text = data.category.name
                 tvDesc.text = data.description
-                tvDate.text = Helper.convertTimeStampToStringDate(data.timeStamp, true)
+                tvDate.text = Helper.convertTimeStampToStringDate(data.timeStamp, Constant.DATE_WITH_DAY_NAME)
 
                 when (data.category.type) {
                     Constant.CATEGORY_TYPE_INCOME -> {

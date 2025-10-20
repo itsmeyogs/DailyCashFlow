@@ -7,735 +7,765 @@
     android:background="?attr/android:colorBackground"
     tools:context=".ui.home.HomeFragment">
 
-   <androidx.core.widget.NestedScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintBottom_toBottomOf="parent">
-
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-           <com.google.android.material.card.MaterialCardView
-               android:id="@+id/card_remaining_balance"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="24dp"
-               android:alpha="0.69"
-               app:cardCornerRadius="10dp"
-               app:cardElevation="4dp"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:strokeWidth="0dp">
-
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:id="@+id/layout_card_remaining_balance"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:background="@drawable/bg_gradient_card_remaining_balance"
-                   android:paddingHorizontal="20dp"
-                   android:paddingVertical="18dp">
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_title_remaining_balance"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/poppins_medium"
-                       android:letterSpacing="0.12"
-                       android:text="@string/title_remaining_balance"
-                       android:textColor="?attr/colorTitleCardRemainingBalance"
-                       android:textSize="20sp"
-                       app:layout_constraintBottom_toTopOf="@id/tv_value_remaining_balance"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:layout_constraintHorizontal_chainStyle="spread_inside"
-                       app:layout_constraintEnd_toStartOf="@id/icon_remaining_balance"
-                       />
-
-
-                   <com.google.android.material.imageview.ShapeableImageView
-                       android:id="@+id/icon_remaining_balance"
-                       android:layout_width="32dp"
-                       android:layout_height="32dp"
-                       android:src="@drawable/ic_money"
-                       android:tint="@color/color_icon_card_remaining_balance"
-                       app:layout_constraintBottom_toBottomOf="@id/tv_title_remaining_balance"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toEndOf="@id/tv_title_remaining_balance"
-                       app:layout_constraintTop_toTopOf="@id/tv_title_remaining_balance" />
-
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_value_remaining_balance"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginVertical="2dp"
-                       android:fontFamily="@font/poppins_semibold"
-                       android:text="@string/example_value_remaining_balance"
-                       android:textColor="?attr/colorValueCardRemainingBalance"
-                       android:textSize="24sp"
-                       app:layout_constraintBottom_toTopOf="@id/tv_desc_remaining_balance"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/tv_title_remaining_balance" />
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_desc_remaining_balance"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/poppins"
-                       android:layout_marginTop="4dp"
-                       android:text="@string/example_desc_remaining_balance"
-                       android:textColor="?attr/colorDescCardRemainingBalance"
-                       android:textSize="12sp"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/tv_value_remaining_balance" />
-               </androidx.constraintlayout.widget.ConstraintLayout>
-
-               <com.google.android.material.progressindicator.CircularProgressIndicator
-                   android:id="@+id/loading_indicator_card_remaining_balance"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:indicatorSize="30dp"
-                   android:indeterminate="true"
-                   android:layout_gravity="center"
-                   app:indicatorColor="?attr/colorValueCardRemainingBalance"
-                   android:visibility="invisible"
-                   tools:visibility="visible"
-                   />
-
-           </com.google.android.material.card.MaterialCardView>
-
-
-           <com.google.android.material.card.MaterialCardView
-               android:id="@+id/card_income"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="24dp"
-               android:layout_marginTop="16dp"
-               android:layout_marginEnd="8dp"
-               android:clickable="true"
-               android:focusable="true"
-               app:cardCornerRadius="10dp"
-               app:cardElevation="2dp"
-               app:layout_constraintEnd_toStartOf="@id/card_expense"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@id/card_remaining_balance"
-               app:strokeWidth="0dp">
-
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:id="@+id/layout_card_income"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:background="@drawable/bg_card_income">
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_title_income"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="14dp"
-                       android:layout_marginTop="12dp"
-                       android:fontFamily="@font/poppins_medium"
-                       android:letterSpacing="0.01"
-                       android:text="@string/title_income"
-                       android:textColor="?attr/colorTitleCardIncome"
-                       android:textSize="13sp"
-                       app:layout_constraintBottom_toTopOf="@id/tv_value_income"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/icon_income"
-                       app:layout_constraintHorizontal_chainStyle="spread_inside"
-                       />
-
-                   <com.google.android.material.imageview.ShapeableImageView
-                       android:id="@+id/icon_income"
-                       android:layout_width="25dp"
-                       android:layout_height="25dp"
-                       android:layout_marginEnd="14dp"
-                       android:src="@drawable/ic_money_plus_line"
-                       android:tint="?attr/colorIconCardIncome"
-                       app:layout_constraintBottom_toBottomOf="@id/tv_title_income"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toEndOf="@id/tv_title_income"
-                       app:layout_constraintTop_toTopOf="@id/tv_title_income" />
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_value_income"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginVertical="4dp"
-                       android:fontFamily="@font/poppins_semibold"
-                       android:text="@string/example_value_income"
-                       android:textColor="?attr/colorValueCardIncome"
-                       android:textSize="16sp"
-                       android:layout_marginHorizontal="14dp"
-                       app:layout_constraintBottom_toTopOf="@id/divider_income"
-                       app:layout_constraintTop_toBottomOf="@id/tv_title_income"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       />
-
-
-                   <com.google.android.material.divider.MaterialDivider
-                       android:id="@+id/divider_income"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       app:dividerColor="?attr/colorDividerCardIncome"
-                       app:layout_constraintBottom_toTopOf="@id/tv_desc_income"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/tv_value_income" />
-
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_desc_income"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginVertical="4dp"
-                       android:layout_marginStart="14dp"
-                       android:fontFamily="@font/inter_medium"
-                       android:text="@string/example_desc_income"
-                       android:textColor="?attr/colorDescCardIncome"
-                       android:textSize="11sp"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/icon_desc_income"
-                       app:layout_constraintHorizontal_chainStyle="spread_inside"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/divider_income" />
-
-                   <com.google.android.material.imageview.ShapeableImageView
-                       android:id="@+id/icon_desc_income"
-                       android:layout_width="14dp"
-                       android:layout_height="14dp"
-                       android:layout_marginTop="4dp"
-                       android:layout_marginEnd="12dp"
-                       android:src="@drawable/ic_arrow_right"
-                       android:tint="?attr/colorDescCardIncome"
-                       app:layout_constraintBottom_toBottomOf="@id/tv_desc_income"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toEndOf="@id/tv_desc_income"
-                       app:layout_constraintTop_toTopOf="@id/tv_desc_income" />
-               </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-               <com.google.android.material.progressindicator.CircularProgressIndicator
-                   android:id="@+id/loading_indicator_card_income"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:indicatorSize="30dp"
-                   android:indeterminate="true"
-                   android:layout_gravity="center"
-                   app:indicatorColor="?attr/colorValueCardIncome"
-                   android:visibility="invisible"
-                   tools:visibility="visible"
-                   />
-
-
-           </com.google.android.material.card.MaterialCardView>
-
-
-           <com.google.android.material.card.MaterialCardView
-               android:id="@+id/card_expense"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="8dp"
-               android:layout_marginEnd="24dp"
-               app:cardCornerRadius="10dp"
-               android:clickable="true"
-               android:focusable="true"
-               app:cardElevation="2dp"
-               app:layout_constraintBottom_toBottomOf="@id/card_income"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toEndOf="@id/card_income"
-               app:layout_constraintTop_toTopOf="@id/card_income"
-               app:strokeWidth="0dp">
-
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:id="@+id/layout_card_expense"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:background="@drawable/bg_card_expense">
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_title_expense"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="14dp"
-                       android:layout_marginTop="12dp"
-                       android:fontFamily="@font/poppins_medium"
-                       android:letterSpacing="0.01"
-                       android:text="@string/title_expense"
-                       android:textColor="?attr/colorTitleCardExpense"
-                       android:textSize="12sp"
-                       app:layout_constraintBottom_toTopOf="@id/tv_value_expense"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/icon_expense"
-                       app:layout_constraintHorizontal_chainStyle="spread_inside"
-                       />
-
-                   <com.google.android.material.imageview.ShapeableImageView
-                       android:id="@+id/icon_expense"
-                       android:layout_width="25dp"
-                       android:layout_height="25dp"
-                       android:layout_marginEnd="14dp"
-                       android:src="@drawable/ic_money_minus_line"
-                       android:tint="?attr/colorIconCardExpense"
-                       app:layout_constraintBottom_toBottomOf="@id/tv_title_expense"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintTop_toTopOf="@id/tv_title_expense"
-                       app:layout_constraintStart_toEndOf="@id/tv_title_expense"
-                       />
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_value_expense"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginVertical="4dp"
-                       android:fontFamily="@font/poppins_semibold"
-                       android:text="@string/example_value_expense"
-                       android:textColor="?attr/colorValueCardExpense"
-                       android:textSize="16sp"
-                       android:layout_marginHorizontal="14dp"
-                       app:layout_constraintBottom_toTopOf="@id/divider_expense"
-                       app:layout_constraintTop_toBottomOf="@id/tv_title_expense"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       />
-
-
-                   <com.google.android.material.divider.MaterialDivider
-                       android:id="@+id/divider_expense"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       app:dividerColor="?attr/colorDividerCardExpense"
-                       app:layout_constraintBottom_toTopOf="@id/tv_desc_expense"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/tv_value_expense" />
-
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_desc_expense"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginVertical="4dp"
-                       android:layout_marginStart="14dp"
-                       android:fontFamily="@font/inter_medium"
-                       android:text="@string/example_desc_expense"
-                       android:textColor="?attr/colorDescCardExpense"
-                       android:textSize="11sp"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/icon_desc_expense"
-                       app:layout_constraintHorizontal_chainStyle="spread_inside"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/divider_expense" />
-
-
-                   <com.google.android.material.imageview.ShapeableImageView
-                       android:id="@+id/icon_desc_expense"
-                       android:layout_width="14dp"
-                       android:layout_height="14dp"
-                       android:layout_marginTop="4dp"
-                       android:layout_marginEnd="12dp"
-                       android:src="@drawable/ic_arrow_right"
-                       android:tint="?attr/colorDescCardExpense"
-                       app:layout_constraintBottom_toBottomOf="@id/tv_desc_expense"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toEndOf="@id/tv_desc_expense"
-                       app:layout_constraintTop_toTopOf="@id/tv_desc_expense" />
-               </androidx.constraintlayout.widget.ConstraintLayout>
-
-               <com.google.android.material.progressindicator.CircularProgressIndicator
-                   android:id="@+id/loading_indicator_card_expense"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:indicatorSize="30dp"
-                   android:indeterminate="true"
-                   android:layout_gravity="center"
-                   app:indicatorColor="?attr/colorValueCardExpense"
-                   android:visibility="invisible"
-                   tools:visibility="visible"
-                   />
-
-           </com.google.android.material.card.MaterialCardView>
-
-           <com.google.android.material.card.MaterialCardView
-               android:id="@+id/card_summary"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginHorizontal="24dp"
-               android:layout_marginTop="16dp"
-               app:cardCornerRadius="10dp"
-               android:clickable="true"
-               android:focusable="true"
-               app:cardBackgroundColor="?attr/backgroundColorCardSummary"
-               app:cardElevation="2dp"
-               app:layout_constraintTop_toBottomOf="@id/card_income"
-               app:strokeWidth="0dp">
-
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:id="@+id/layout_card_summary"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:paddingHorizontal="14dp">
-
-                   <androidx.constraintlayout.widget.Guideline
-                       android:id="@+id/guideline_vertical_summary"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:orientation="vertical"
-                       app:layout_constraintGuide_percent="0.63" />
-
-                   <androidx.constraintlayout.widget.Guideline
-                       android:id="@+id/guideline_horizontal_summary"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:orientation="horizontal"
-                       app:layout_constraintGuide_percent="0.78" />
-
-                   <com.google.android.material.textview.MaterialTextView
-                       android:id="@+id/tv_title_summary"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="12dp"
-                       android:fontFamily="@font/poppins_medium"
-                       android:letterSpacing="0.01"
-                       android:text="@string/title_summary"
-                       android:textColor="?attr/colorTitleCardSummary"
-                       android:textSize="14sp"
-                       app:layout_constraintEnd_toStartOf="@id/tv_title_summary"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:layout_constraintBottom_toTopOf="@id/layout_value_summary"
-                       />
-
-                   <FrameLayout
-                       android:id="@+id/layout_dropdown_range_date_filter"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="12dp"
-                       android:background="@drawable/bg_spinner"
-                       app:layout_constraintBottom_toBottomOf="@id/tv_title_summary"
-                       app:layout_constraintEnd_toStartOf="@id/guideline_vertical_summary"
-                       app:layout_constraintStart_toEndOf="@id/tv_title_summary"
-                       app:layout_constraintTop_toTopOf="@id/tv_title_summary">
-
-                       <Spinner
-                           android:id="@+id/dropdown_range_date_filter"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:dropDownWidth="wrap_content"
-                           android:overlapAnchor="false"
-                           android:popupBackground="@drawable/bg_spinner"
-                           android:spinnerMode="dropdown" />
-                   </FrameLayout>
-
-                   <LinearLayout
-                       android:id="@+id/layout_value_summary"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:gravity="center_vertical"
-                       android:orientation="vertical"
-                       android:layout_marginVertical="16dp"
-                       app:layout_constraintTop_toBottomOf="@id/tv_title_summary"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/guideline_vertical_summary"
-                       app:layout_constraintBottom_toTopOf="@id/btn_action_summary"
-                       >
-
-                       <LinearLayout
-                           android:id="@+id/layout_summary_income"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:orientation="horizontal">
-
-                           <com.google.android.material.textview.MaterialTextView
-                               android:id="@+id/tv_title_summary_income"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:fontFamily="@font/inter"
-                               android:letterSpacing="0.01"
-                               android:text="@string/title_summary_income"
-                               android:textColor="?attr/colorTitleCardSummary"
-                               android:textSize="12sp" />
-
-                           <com.google.android.material.textview.MaterialTextView
-                               android:id="@+id/tv_value_summary_income"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginStart="4dp"
-                               android:fontFamily="@font/inter_medium"
-                               android:text="@string/example_value_income"
-                               android:textColor="?attr/colorValueIncomeCardSummary"
-                               android:textSize="12sp" />
-
-                       </LinearLayout>
-
-                       <LinearLayout
-                           android:id="@+id/layout_summary_expense"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:orientation="horizontal"
-                           >
-                           <com.google.android.material.textview.MaterialTextView
-                               android:id="@+id/tv_title_summary_expense"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:fontFamily="@font/inter"
-                               android:letterSpacing="0.01"
-                               android:text="@string/title_summary_expense"
-                               android:textColor="?attr/colorTitleCardSummary"
-                               android:textSize="12sp" />
-
-                           <com.google.android.material.textview.MaterialTextView
-                               android:id="@+id/tv_value_summary_expense"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginStart="4dp"
-                               android:fontFamily="@font/inter_medium"
-                               android:text="@string/example_value_expense"
-                               android:textColor="?attr/colorValueExpenseCardSummary"
-                               android:textSize="12sp" />
-
-                       </LinearLayout>
-
-
-
-                   </LinearLayout>
-
-                   <LinearLayout
-                       android:id="@+id/btn_action_summary"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginBottom="12dp"
-                       android:background="?attr/selectableItemBackground"
-                       android:clickable="true"
-                       android:focusable="true"
-                       android:gravity="center"
-                       android:orientation="horizontal"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/layout_value_summary"
-                       >
-
-                       <com.google.android.material.textview.MaterialTextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:fontFamily="@font/inter"
-                           android:letterSpacing="0.01"
-                           android:text="@string/see_more"
-                           android:textColor="?attr/colorActionCardSummary"
-                           android:textSize="13sp" />
-
-                       <com.google.android.material.imageview.ShapeableImageView
-                           android:layout_width="17dp"
-                           android:layout_height="17dp"
-                           android:layout_marginStart="4dp"
-                           android:layout_marginTop="4dp"
-                           android:src="@drawable/ic_arrow_right"
-                           android:tint="?attr/colorActionCardSummary" />
-                   </LinearLayout>
-
-                   <com.github.mikephil.charting.charts.PieChart
-                       android:id="@+id/pie_chart_summary"
-                       android:layout_width="0dp"
-                       android:layout_height="0dp"
-                       android:layout_centerInParent="true"
-                       android:layout_marginStart="12dp"
-                       android:layout_marginTop="12dp"
-                       android:layout_marginBottom="4dp"
-                       app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_summary"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toEndOf="@id/layout_dropdown_range_date_filter"
-                       app:layout_constraintTop_toTopOf="parent" />
-
-                   <LinearLayout
-                       android:id="@+id/layout_label_pie_income"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:orientation="horizontal"
-                       android:layout_marginStart="8dp"
-                       android:gravity="center_vertical|start"
-                       app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_summary"
-                       app:layout_constraintStart_toEndOf="@id/guideline_vertical_summary"
-                       app:layout_constraintBottom_toTopOf="@id/layout_label_pie_expense"
-                       app:layout_constraintVertical_chainStyle="packed"
-                       app:layout_constraintEnd_toEndOf="parent">
-
-                       <View
-                           android:id="@+id/rectangle_label_pie_chart_income"
-                           android:layout_width="9dp"
-                           android:layout_height="9dp"
-                           android:background="?attr/colorIncomePieChart"/>
-
-                       <com.google.android.material.textview.MaterialTextView
-                           android:id="@+id/tv_label_pie_chart_income"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginStart="4dp"
-                           android:fontFamily="@font/inter"
-                           android:text="@string/label_pie_chart_income"
-                           android:textColor="?attr/colorTitleCardSummary"
-                           android:textSize="9sp"
-                           tools:ignore="SmallSp" />
-                   </LinearLayout>
-
-
-                   <LinearLayout
-                       android:id="@+id/layout_label_pie_expense"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:orientation="horizontal"
-                       android:layout_marginBottom="8dp"
-                       android:gravity="center_vertical|start"
-                       app:layout_constraintTop_toBottomOf="@id/layout_label_pie_income"
-                       app:layout_constraintStart_toStartOf="@id/layout_label_pie_income"
-                       app:layout_constraintEnd_toEndOf="@id/layout_label_pie_income"
-                       app:layout_constraintBottom_toBottomOf="parent">
-
-                       <View
-                           android:id="@+id/rectangle_label_pie_chart_expense"
-                           android:layout_width="9dp"
-                           android:layout_height="9dp"
-                           android:background="?attr/colorExpensePieChart" />
-
-                       <com.google.android.material.textview.MaterialTextView
-                           android:id="@+id/tv_label_pie_chart_expense"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginStart="4dp"
-                           android:fontFamily="@font/inter"
-                           android:text="@string/label_pie_chart_expense"
-                           android:textColor="?attr/colorTitleCardSummary"
-                           android:textSize="9sp"
-                           tools:ignore="SmallSp" />
-
-                   </LinearLayout>
-
-               </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-               <com.google.android.material.progressindicator.CircularProgressIndicator
-                   android:id="@+id/loading_indicator_card_summary"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:indicatorSize="30dp"
-                   android:indeterminate="true"
-                   android:layout_gravity="center"
-                   app:indicatorColor="?attr/colorValueIncomeCardSummary"
-                   android:visibility="invisible"
-                   tools:visibility="visible"
-                   />
-
-           </com.google.android.material.card.MaterialCardView>
-
-
-           <com.google.android.material.textview.MaterialTextView
-               android:id="@+id/tv_title_transaction_history"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="24dp"
-               android:layout_marginTop="16dp"
-               android:fontFamily="@font/poppins_medium"
-               android:letterSpacing="0.01"
-               android:text="@string/title_transaction_history"
-               android:textColor="?attr/colorTitleTransactionHistoryDashboard"
-               android:textSize="14sp"
-               app:layout_constraintEnd_toStartOf="@id/btn_action_transaction_history"
-               app:layout_constraintHorizontal_chainStyle="spread_inside"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@id/card_summary" />
-
-
-           <LinearLayout
-               android:id="@+id/btn_action_transaction_history"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginEnd="16dp"
-               android:background="?attr/selectableItemBackground"
-               android:clickable="true"
-               android:focusable="true"
-               android:gravity="center"
-               android:orientation="horizontal"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toEndOf="@id/tv_title_transaction_history"
-               app:layout_constraintTop_toTopOf="@id/tv_title_transaction_history">
-
-               <com.google.android.material.textview.MaterialTextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:fontFamily="@font/inter"
-                   android:letterSpacing="0.01"
-                   android:text="@string/see_more"
-                   android:textColor="?attr/colorActionCardSummary"
-                   android:textSize="13sp" />
-
-               <com.google.android.material.imageview.ShapeableImageView
-                   android:layout_width="17dp"
-                   android:layout_height="17dp"
-                   android:layout_marginStart="4dp"
-                   android:layout_marginTop="4dp"
-                   android:src="@drawable/ic_arrow_right"
-                   android:tint="?attr/colorActionCardSummary" />
-           </LinearLayout>
-
-           <androidx.recyclerview.widget.RecyclerView
-               android:id="@+id/rv_transaction_history"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:nestedScrollingEnabled="false"
-               android:paddingHorizontal="24dp"
-               android:layout_marginTop="4dp"
-               tools:listitem="@layout/item_transaction_history"
-               app:layout_constraintTop_toBottomOf="@id/tv_title_transaction_history"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               />
-
-           <com.google.android.material.textview.MaterialTextView
-               android:id="@+id/tv_empty_transaction"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="48dp"
-               android:fontFamily="@font/poppins_medium"
-               android:letterSpacing="0.01"
-               android:text="@string/empty_transaction"
-               android:textColor="?attr/colorTitleTransactionHistoryDashboard"
-               android:textSize="12sp"
-               android:visibility="gone"
-               app:layout_constraintTop_toBottomOf="@id/tv_title_transaction_history"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               />
-
-
-           <com.google.android.material.progressindicator.CircularProgressIndicator
-               android:id="@+id/loading_indicator_transaction_history"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               app:indicatorSize="30dp"
-               android:indeterminate="true"
-               android:layout_marginTop="48dp"
-               android:layout_gravity="center"
-               app:indicatorColor="?attr/colorTitleCardSummary"
-               android:visibility="invisible"
-               tools:visibility="visible"
-               app:layout_constraintTop_toBottomOf="@id/tv_title_transaction_history"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               />
-
-
-       </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-   </androidx.core.widget.NestedScrollView>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_remaining_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:alpha="0.69"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gradient_card_remaining_balance">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_card_remaining_balance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:paddingHorizontal="20dp"
+                        android:paddingVertical="18dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_title_remaining_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:letterSpacing="0.12"
+                            android:text="@string/title_remaining_balance"
+                            android:textColor="?attr/colorTitleCardRemainingBalance"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_value_remaining_balance"
+                            app:layout_constraintEnd_toStartOf="@id/icon_remaining_balance"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/icon_remaining_balance"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_money"
+                            android:tint="@color/color_icon_card_remaining_balance"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_title_remaining_balance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_title_remaining_balance"
+                            app:layout_constraintTop_toTopOf="@id/tv_title_remaining_balance" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_value_remaining_balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="2dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/example_value_remaining_balance"
+                            android:textColor="?attr/colorValueCardRemainingBalance"
+                            android:textSize="24sp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_desc_remaining_balance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_title_remaining_balance" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_desc_remaining_balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="@string/desc_remaining_balance"
+                            android:textColor="?attr/colorDescCardRemainingBalance"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_value_remaining_balance" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/loading_indicator_card_remaining_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:visibility="visible"
+                        app:indicatorColor="?attr/colorValueCardRemainingBalance"
+                        app:indicatorSize="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_income"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="?attr/backgroundColorCardIncome"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toStartOf="@id/card_expense"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_remaining_balance"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_card_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_title_income"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:letterSpacing="0.01"
+                            android:text="@string/title_income"
+                            android:textColor="?attr/colorTitleCardIncome"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_value_income"
+                            app:layout_constraintEnd_toStartOf="@id/icon_income"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/icon_income"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="14dp"
+                            android:src="@drawable/ic_money_plus_line"
+                            android:tint="?attr/colorIconCardIncome"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_title_income"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_title_income"
+                            app:layout_constraintTop_toTopOf="@id/tv_title_income" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_value_income"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="14dp"
+                            android:layout_marginVertical="4dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/example_value_income"
+                            android:textColor="?attr/colorValueCardIncome"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@id/divider_income"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_title_income" />
+
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:id="@+id/divider_income"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:dividerColor="?attr/colorDividerCardIncome"
+                            app:layout_constraintBottom_toTopOf="@id/tv_desc_income"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_value_income" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_desc_income"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="4dp"
+                            android:layout_marginStart="14dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/desc_income"
+                            android:textColor="?attr/colorDescCardIncome"
+                            android:textSize="11sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/icon_desc_income"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/divider_income" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/icon_desc_income"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:tint="?attr/colorDescCardIncome"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_desc_income"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_desc_income"
+                            app:layout_constraintTop_toTopOf="@id/tv_desc_income" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/loading_indicator_card_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:visibility="visible"
+                        app:indicatorColor="?attr/colorValueCardIncome"
+                        app:indicatorSize="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_expense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="?attr/backgroundColorCardExpense"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:layout_constraintBottom_toBottomOf="@id/card_income"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/card_income"
+                app:layout_constraintTop_toTopOf="@id/card_income"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_card_expense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_title_expense"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:letterSpacing="0.01"
+                            android:text="@string/title_expense"
+                            android:textColor="?attr/colorTitleCardExpense"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_value_expense"
+                            app:layout_constraintEnd_toStartOf="@id/icon_expense"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/icon_expense"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="14dp"
+                            android:src="@drawable/ic_money_minus_line"
+                            android:tint="?attr/colorIconCardExpense"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_title_expense"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_title_expense"
+                            app:layout_constraintTop_toTopOf="@id/tv_title_expense" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_value_expense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="14dp"
+                            android:layout_marginVertical="4dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/example_value_expense"
+                            android:textColor="?attr/colorValueCardExpense"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@id/divider_expense"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_title_expense" />
+
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:id="@+id/divider_expense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:dividerColor="?attr/colorDividerCardExpense"
+                            app:layout_constraintBottom_toTopOf="@id/tv_desc_expense"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_value_expense" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_desc_expense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="4dp"
+                            android:layout_marginStart="14dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/desc_expense"
+                            android:textColor="?attr/colorDescCardExpense"
+                            android:textSize="11sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/icon_desc_expense"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/divider_expense" />
+
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/icon_desc_expense"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:tint="?attr/colorDescCardExpense"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_desc_expense"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_desc_expense"
+                            app:layout_constraintTop_toTopOf="@id/tv_desc_expense" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/loading_indicator_card_expense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:visibility="visible"
+                        app:indicatorColor="?attr/colorValueCardExpense"
+                        app:indicatorSize="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="?attr/backgroundColorCardSummary"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:layout_constraintTop_toBottomOf="@id/card_income"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_card_summary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:paddingHorizontal="14dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline_vertical_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.63" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline_horizontal_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.78" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_title_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:letterSpacing="0.01"
+                            android:text="@string/title_summary"
+                            android:textColor="?attr/colorTitleCardSummary"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@id/layout_value_summary"
+                            app:layout_constraintEnd_toStartOf="@id/tv_title_summary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <FrameLayout
+                            android:id="@+id/layout_dropdown_range_date_filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_spinner"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_title_summary"
+                            app:layout_constraintEnd_toStartOf="@id/guideline_vertical_summary"
+                            app:layout_constraintStart_toEndOf="@id/tv_title_summary"
+                            app:layout_constraintTop_toTopOf="@id/tv_title_summary">
+
+                            <Spinner
+                                android:id="@+id/dropdown_range_date_filter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:dropDownWidth="wrap_content"
+                                android:overlapAnchor="false"
+                                android:popupBackground="@drawable/bg_spinner"
+                                android:spinnerMode="dropdown" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_value_summary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="16dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toTopOf="@id/btn_action_summary"
+                            app:layout_constraintEnd_toStartOf="@id/guideline_vertical_summary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_title_summary">
+
+                            <LinearLayout
+                                android:id="@+id/layout_summary_income"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_title_summary_income"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter"
+                                    android:letterSpacing="0.01"
+                                    android:text="@string/title_summary_income"
+                                    android:textColor="?attr/colorTitleCardSummary"
+                                    android:textSize="12sp" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_value_summary_income"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="@string/example_value_income"
+                                    android:textColor="?attr/colorValueIncomeCardSummary"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layout_summary_expense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_title_summary_expense"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter"
+                                    android:letterSpacing="0.01"
+                                    android:text="@string/title_summary_expense"
+                                    android:textColor="?attr/colorTitleCardSummary"
+                                    android:textSize="12sp" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/tv_value_summary_expense"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="@string/example_value_expense"
+                                    android:textColor="?attr/colorValueExpenseCardSummary"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btn_action_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/layout_value_summary">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter"
+                                android:letterSpacing="0.01"
+                                android:text="@string/see_more"
+                                android:textColor="?attr/colorActionCardSummary"
+                                android:textSize="13sp" />
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:layout_width="17dp"
+                                android:layout_height="17dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:src="@drawable/ic_arrow_right"
+                                android:tint="?attr/colorActionCardSummary" />
+                        </LinearLayout>
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pie_chart_summary"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="4dp"
+                            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_summary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/layout_dropdown_range_date_filter"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/layout_label_pie_income"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|start"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toTopOf="@id/layout_label_pie_expense"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/guideline_vertical_summary"
+                            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_summary"
+                            app:layout_constraintVertical_chainStyle="packed">
+
+                            <View
+                                android:id="@+id/rectangle_label_pie_chart_income"
+                                android:layout_width="9dp"
+                                android:layout_height="9dp"
+                                android:background="?attr/colorIncomePieChart" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_label_pie_chart_income"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:fontFamily="@font/inter"
+                                android:text="@string/label_pie_chart_income"
+                                android:textColor="?attr/colorTitleCardSummary"
+                                android:textSize="9sp"
+                                tools:ignore="SmallSp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/layout_label_pie_expense"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_vertical|start"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/layout_label_pie_income"
+                            app:layout_constraintTop_toBottomOf="@id/layout_label_pie_income">
+
+                            <View
+                                android:id="@+id/rectangle_label_pie_chart_expense"
+                                android:layout_width="9dp"
+                                android:layout_height="9dp"
+                                android:background="?attr/colorExpensePieChart" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv_label_pie_chart_expense"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:fontFamily="@font/inter"
+                                android:text="@string/label_pie_chart_expense"
+                                android:textColor="?attr/colorTitleCardSummary"
+                                android:textSize="9sp"
+                                tools:ignore="SmallSp" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/loading_indicator_card_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:visibility="invisible"
+                        app:indicatorColor="?attr/colorValueIncomeCardSummary"
+                        app:indicatorSize="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_title_transaction_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:letterSpacing="0.01"
+                android:text="@string/title_transaction_history"
+                android:textColor="?attr/colorTitleTransactionHistoryDashboard"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_action_transaction_history"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_summary" />
+
+
+            <LinearLayout
+                android:id="@+id/btn_action_transaction_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_title_transaction_history"
+                app:layout_constraintTop_toTopOf="@id/tv_title_transaction_history">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:letterSpacing="0.01"
+                    android:text="@string/see_more"
+                    android:textColor="?attr/colorActionCardSummary"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="?attr/colorActionCardSummary" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_transaction_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:nestedScrollingEnabled="false"
+                android:paddingHorizontal="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_transaction_history"
+                tools:listitem="@layout/item_transaction_history" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_empty_transaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/poppins_medium"
+                android:letterSpacing="0.01"
+                android:text="@string/empty_transaction"
+                android:textColor="?attr/colorTitleTransactionHistoryDashboard"
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_transaction_history" />
+
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/loading_indicator_transaction_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="48dp"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:indicatorColor="?attr/colorTitleCardSummary"
+                app:indicatorSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_transaction_history"
+                tools:visibility="visible" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -743,16 +773,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
         android:backgroundTint="?attr/backgroundColorFAB"
-        app:tint="?attr/colorIconFAB"
         android:contentDescription="@string/desc_btn_add_new_transaction"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-
-
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="?attr/colorIconFAB" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
