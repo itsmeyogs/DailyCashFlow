@@ -3,10 +3,15 @@ package com.yihs.dailycashflow.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.yihs.dailycashflow.data.model.RangeDateFilter
 import com.yihs.dailycashflow.data.model.Summary
-import com.yihs.dailycashflow.data.model.Transaction
+import com.yihs.dailycashflow.data.model.TransactionResponse
 import com.yihs.dailycashflow.repository.Repository
+import com.yihs.dailycashflow.utils.Resource
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: Repository) : ViewModel() {
 
@@ -30,47 +35,20 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
     //pie chart
     val exampleDataPieChart = Summary(income = 200000f, expense = 60000f)
 
-    private val _transactionHistory = MutableLiveData<List<Transaction>>()
-    val transactionHistory : LiveData<List<Transaction>> = _transactionHistory
+    private val _transactionState = MutableStateFlow<Resource<TransactionResponse>>(Resource.Loading)
+    val transactionState : StateFlow<Resource<TransactionResponse>> = _transactionState
 
-
-    init {
-//        val data = arrayListOf<Transaction>()
-//        for(i in 1..10){
-//            var item : Transaction
-//            if(i % 5 == 0){
-//                item = Transaction(
-//                    id = i,
-//                    amount = 100000,
-//                    description = "Gajian",
-//                    date = "1760865109",
-//                    category = TransactionCategory(
-//                        id = 1,
-//                        name = "Income",
-//                        type = Constant.CATEGORY_TYPE_INCOME
-//                    )
-//                )
-//            }else{
-//             item = Transaction(
-//                    id = i,
-//                    amount = 100000,
-//                    description = "Makan Padang",
-//                    date = "1760865109",
-//                    category = TransactionCategory(
-//                        id = 2,
-//                        name = "Makan",
-//                        type = Constant.CATEGORY_TYPE_EXPENSE
-//                    )
-//                )
-//            }
-//
-//            data.add(item)
-//        }
-//
-//        _transactionHistory.value = data
+    fun getTransaction(){
+        viewModelScope.launch {
+            repository.transaction().collect {
+                _transactionState.value = it
+            }
+        }
     }
 
-
+    init {
+        getTransaction()
+    }
 
 
 }

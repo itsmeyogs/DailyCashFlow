@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -17,7 +21,9 @@ import com.yihs.dailycashflow.R
 import com.yihs.dailycashflow.data.model.Transaction
 import com.yihs.dailycashflow.databinding.FragmentHomeBinding
 import com.yihs.dailycashflow.utils.Helper
+import com.yihs.dailycashflow.utils.Resource
 import com.yihs.dailycashflow.utils.showSnackBar
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -54,14 +60,45 @@ class HomeFragment : Fragment() {
             handleClickItemTransaction(data)
         }
 
-
-        //update data transaction
-        viewModel.transactionHistory.observe(viewLifecycleOwner){data ->
-            homeAdapter.submitList(data)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.transactionState.collect { resource ->
+                    when(resource){
+                        is Resource.Idle -> {
+                            handleLoadingTransaction(false)
+                        }
+                        is Resource.Loading -> {
+                            handleLoadingTransaction(true)
+                        }
+                        is Resource.Success -> {
+                            handleLoadingTransaction(false)
+                            //move to main activity
+                            val data = resource.data.data
+                            homeAdapter.submitList(data)
+                        }
+                        is Resource.Error -> {
+                            handleLoadingTransaction(false)
+                            //show message
+                            showSnackBar(resource.message)
+                        }
+                    }
+                }
+            }
         }
 
     }
 
+    private fun handleLoadingTransaction(isShow: Boolean){
+        binding.apply {
+            if(isShow){
+                loadingIndicatorTransactionHistory.visibility = View.VISIBLE
+                rvTransactionHistory.visibility = View.INVISIBLE
+            }else{
+                loadingIndicatorTransactionHistory.visibility = View.INVISIBLE
+                rvTransactionHistory.visibility = View.VISIBLE
+            }
+        }
+    }
 
 
 

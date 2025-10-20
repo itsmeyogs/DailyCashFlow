@@ -119,7 +119,7 @@ class HomeAdapter: ListAdapter<Transaction, RecyclerView.ViewHolder>(DIFF_CALLBA
             binding.apply {
                 tvTitle.text = data.category.name
                 tvDesc.text = data.description
-                tvDate.text = Helper.convertTimeStampToStringDate(data.date.toLong(), true)
+                tvDate.text = Helper.convertTimeStampToStringDate(data.timeStamp.toLong(), true)
 
                 when(data.category.type){
                     Constant.CATEGORY_TYPE_INCOME -> {
