@@ -1,5 +1,6 @@
 package com.yihs.dailycashflow.repository
 
+import com.yihs.dailycashflow.data.ResultForm
 import com.yihs.dailycashflow.data.model.LoginResponse
 import com.yihs.dailycashflow.data.model.RegisterResponse
 import com.yihs.dailycashflow.data.model.TransactionResponse
@@ -20,44 +21,44 @@ class Repository(private val apiService: ApiService, private val userPreference:
 
     suspend fun removeSession() = userPreference.removeSession()
 
-    fun login(email: String, password: String) : Flow<Resource<LoginResponse>> = flow {
-        emit(Resource.Loading)
+
+    fun login(email: String, password: String) : Flow<ResultForm<LoginResponse>> = flow {
+        emit(ResultForm.Loading)
         try{
             val response = apiService.login(email, password)
             if(response.isSuccessful){
                 response.body()?.let {
-                    emit(Resource.Success(it, response.code()))
+                    emit(ResultForm.Success(it, response.code()))
                 }?: run{
-                    emit(Resource.Error("Response Body null", response.code()))
+                    emit(ResultForm.Error(Constant.RESULT_BODY_NULL, response.code()))
                 }
             }else{
                 val errorJson = response.errorBody()?.string()
-                emit(Resource.Error(Helper.parseErrorMessage(errorJson), response.code()))
+                emit(ResultForm.Error(Helper.parseErrorMessage(errorJson), response.code()))
             }
         }catch (e: Exception){
-            emit(Resource.Error(e.message ?: "An Unknown error occurred", null))
+            emit(ResultForm.Error(e.message ?: Constant.RESULT_ERROR, null))
         }
     }
 
-    fun register(name: String, email: String, password: String) : Flow<Resource<RegisterResponse>> = flow {
-        emit(Resource.Loading)
+    fun register(name: String, email: String, password: String) : Flow<ResultForm<RegisterResponse>> = flow {
+        emit(ResultForm.Loading)
         try {
             val response = apiService.register(name, email, password)
             if(response.isSuccessful){
                 response.body()?.let {
-                    emit(Resource.Success(it, response.code()))
+                    emit(ResultForm.Success(it, response.code()))
                 }?: run{
-                    emit(Resource.Error("Response Body null", response.code()))
+                    emit(ResultForm.Error(Constant.RESULT_BODY_NULL, response.code()))
                 }
             }else{
                 val errorJson = response.errorBody()?.string()
-                emit(Resource.Error(Helper.parseErrorMessage(errorJson), response.code()))
+                emit(ResultForm.Error(Helper.parseErrorMessage(errorJson), response.code()))
             }
-        }catch (e: Exception){
-            emit(Resource.Error(e.message ?: "An Unknown error occurred", null))
+        }catch (e : Exception){
+            emit(ResultForm.Error(e.message ?: Constant.RESULT_ERROR, null))
         }
     }
-
 
     fun transaction(orderBy: String = Constant.ORDER_BY_NEWEST, type: String = Constant.CATEGORY_TYPE_ALL, page: Int = 1) : Flow<Resource<TransactionResponse>> = flow {
         emit(Resource.Loading)

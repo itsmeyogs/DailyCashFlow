@@ -9,9 +9,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.yihs.dailycashflow.R
+import com.yihs.dailycashflow.data.ResultForm
 import com.yihs.dailycashflow.databinding.ActivityLoginBinding
 import com.yihs.dailycashflow.ui.main.MainActivity
-import com.yihs.dailycashflow.utils.Resource
+import com.yihs.dailycashflow.utils.Constant
 import com.yihs.dailycashflow.utils.showSnackBar
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,14 +32,38 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        validateCredential()
-        observeLoginState()
-        onClickForgetPassword()
-        onClickRegisterNow()
+
+        onLoginClicked()
+        onForgetPasswordClicked()
+        onRegisterNowClicked()
+
+        lifecycleScope.launch {
+            viewModel.loginState.collect { result->
+                when(result){
+                    is ResultForm.Idle -> {
+                        showLoading(false)
+                    }
+                    is ResultForm.Loading -> {
+                        showLoading(true)
+                    }
+
+                    is ResultForm.Success -> {
+                        showLoading(false)
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    is ResultForm.Error -> {
+                        showLoading(false)
+                        showSnackBar(result.message)
+                    }
+                }
+            }
+        }
 
     }
 
-    private fun validateCredential(){
+    private fun onLoginClicked(){
         binding.btnLogin.setOnClickListener {
             val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
@@ -46,46 +71,19 @@ class LoginActivity : AppCompatActivity() {
             if(email.isNotEmpty() && password.isNotEmpty()){
                 viewModel.login(email, password)
             }else{
-                showSnackBar("Please fill all fields")
+                showSnackBar(Constant.FILL_ALL_FIELDS)
             }
         }
     }
 
 
-    private fun observeLoginState(){
-        lifecycleScope.launch {
-            viewModel.loginState.collect { resource ->
-                when(resource){
-                    is Resource.Idle -> {
-                        showLoading(false)
-                    }
-                    is Resource.Loading -> {
-                        showLoading(true)
-                    }
-                    is Resource.Success -> {
-                        showLoading(false)
-                        //move to main activity
-                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                    is Resource.Error -> {
-                        showLoading(false)
-                        //show message
-                        showSnackBar(resource.message)
-                    }
-                }
-            }
-        }
-    }
-
-    private fun onClickForgetPassword(){
+    private fun onForgetPasswordClicked(){
         binding.btnForgetPassword.setOnClickListener {
             showSnackBar("Coming Soon")
         }
     }
 
-    private fun onClickRegisterNow(){
+    private fun onRegisterNowClicked(){
         binding.btnRegisterNow.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
