@@ -9,20 +9,28 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.google.android.material.color.MaterialColors
 import com.yihs.dailycashflow.R
+import com.yihs.dailycashflow.data.model.Transaction
 import com.yihs.dailycashflow.databinding.FragmentHomeBinding
 import com.yihs.dailycashflow.utils.Helper
+import com.yihs.dailycashflow.utils.Resource
+import com.yihs.dailycashflow.utils.showSnackBar
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel : HomeViewModel by viewModel()
+    private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,11 +44,69 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        homeAdapter = HomeAdapter()
+
         setUpDropDown()
         setUpPieChart()
 
+        //set rv transaction to linear layout
+        binding.rvTransactionHistory.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = homeAdapter
+        }
+
+        //handle on click item transaction
+        homeAdapter.onClickItem = { data ->
+            handleClickItemTransaction(data)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.transactionState.collect { resource ->
+                    when(resource){
+                        is Resource.Idle -> {
+                            handleLoadingTransaction(false)
+                        }
+                        is Resource.Loading -> {
+                            handleLoadingTransaction(true)
+                        }
+                        is Resource.Success -> {
+                            handleLoadingTransaction(false)
+                            //move to main activity
+                            val data = resource.data.data
+                            homeAdapter.submitList(data)
+                        }
+                        is Resource.Error -> {
+                            handleLoadingTransaction(false)
+                            //show message
+                            showSnackBar(resource.message)
+                        }
+                    }
+                }
+            }
+        }
 
     }
+
+    private fun handleLoadingTransaction(isShow: Boolean){
+        binding.apply {
+            if(isShow){
+                loadingIndicatorTransactionHistory.visibility = View.VISIBLE
+                rvTransactionHistory.visibility = View.INVISIBLE
+            }else{
+                loadingIndicatorTransactionHistory.visibility = View.INVISIBLE
+                rvTransactionHistory.visibility = View.VISIBLE
+            }
+        }
+    }
+
+
+
+    private fun handleClickItemTransaction(item: Transaction){
+        showSnackBar("clicked item ${item.id}")
+
+    }
+
 
     private fun setUpPieChart(){
         val pieChart = binding.pieChart
@@ -59,8 +125,9 @@ class HomeFragment : Fragment() {
 
         //set colors pie chart
         val colors = listOf(
-            MaterialColors.getColor(requireContext(), R.attr.colorExpensePieChart, Color.RED),
-            MaterialColors.getColor(requireContext(), R.attr.colorIncomePieChart, Color.GREEN)
+            Helper.getColorFromAttr(requireContext(), R.attr.colorExpensePieChart, Color.RED),
+            Helper.getColorFromAttr(requireContext(), R.attr.colorIncomePieChart, Color.GREEN)
+
         )
 
         //create dataset pie from entries
@@ -84,7 +151,7 @@ class HomeFragment : Fragment() {
         pieChart.isDrawHoleEnabled = true
 
         //change color hole
-        pieChart.setHoleColor(MaterialColors.getColor(requireContext(), R.attr.backgroundColorCardSummary, Color.WHITE))
+        pieChart.setHoleColor(Helper.getColorFromAttr(requireContext(), R.attr.backgroundColorCardSummary, Color.WHITE))
 
         //set hole size
         pieChart.holeRadius = 60f
@@ -117,7 +184,6 @@ class HomeFragment : Fragment() {
 
 
     }
-
 
 
     private fun setUpDropDown(){

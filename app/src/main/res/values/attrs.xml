@@ -46,6 +46,7 @@
         <attr name="colorTitleItemTransactionHistory" format="color"/>
         <attr name="colorValueIncomeItemTransactionHistory" format="color"/>
         <attr name="colorValueExpenseItemTransactionHistory" format="color"/>
+        <attr name="colorValueDefaultItemTransactionHistory" format="color"/>
         <attr name="colorDescItemTransactionHistory" format="color"/>""
 
         <!--  fab      -->
