@@ -3,8 +3,8 @@
     <declare-styleable name="Theme">
 
         <!-- colors card remaining balance       -->
-        <attr name="backgroundColorCardRemainingBalanceGradientStart" format="color" />
-        <attr name="backgroundColorCardRemainingBalanceGradientEnd" format="color" />
+        <attr name="backgroundColorGradientStart" format="color" />
+        <attr name="backgroundGradientEnd" format="color" />
         <attr name="colorIconCardRemainingBalance" format="color" />
         <attr name="colorTitleCardRemainingBalance" format="color"/>
         <attr name="colorValueCardRemainingBalance" format="color"/>
@@ -57,6 +57,11 @@
         <!--  splash      -->
         <attr name="backgroundColorSplash" format="color"/>
         <attr name="colorItemSplash" format="color"/>
+
+        <attr name="backgroundColorCardDetailTransaction" format="color"/>
+        <attr name="colorTextDetailTransaction" format="color"/>
+        <attr name="colorIconIncomeDetailTransaction" format="color"/>
+        <attr name="colorIconExpenseDetailTransaction" format="color"/>
 
     </declare-styleable>
 </resources>
