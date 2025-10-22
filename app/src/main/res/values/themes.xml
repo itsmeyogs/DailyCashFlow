@@ -7,8 +7,8 @@
         <item name="android:colorBackground">@color/color_background</item>
 
         <!-- card  remaining balance      -->
-        <item name="backgroundColorCardRemainingBalanceGradientStart">@color/background_color_card_remaining_balance_gradient_start</item>
-        <item name="backgroundColorCardRemainingBalanceGradientEnd">@color/background_color_card_remaining_balance_gradient_end</item>
+        <item name="backgroundColorGradientStart">@color/background_color_gradient_start</item>
+        <item name="backgroundGradientEnd">@color/background_color_gradient_end</item>
         <item name="colorIconCardRemainingBalance">@color/color_icon_card_remaining_balance</item>
         <item name="colorTitleCardRemainingBalance">@color/color_title_remaining_balance_card</item>
         <item name="colorValueCardRemainingBalance">@color/color_value_remaining_balance_card</item>
@@ -64,7 +64,21 @@
         <item name="backgroundColorSplash">@color/background_color_splash</item>
         <item name="colorItemSplash">@color/color_item_splash</item>
 
+        <item name="backgroundColorCardDetailTransaction">@color/background_color_card_detail_transaction</item>
+        <item name="colorTextDetailTransaction">@color/color_text_detail_transaction</item>
+        <item name="colorIconIncomeDetailTransaction">@color/color_icon_income_detail_transaction</item>
+        <item name="colorIconExpenseDetailTransaction">@color/color_icon_expense_detail_transaction</item>
+
+
+
     </style>
+
+
+    <style name="ToolbarTitleDetailTransaction" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 
     <style name="Theme.DailyCashFlow" parent="Base.Theme.DailyCashFlow" />
 

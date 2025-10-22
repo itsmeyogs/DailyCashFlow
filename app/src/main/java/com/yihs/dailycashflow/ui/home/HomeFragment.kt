@@ -1,5 +1,6 @@
 package com.yihs.dailycashflow.ui.home
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import com.yihs.dailycashflow.data.Result
 import com.yihs.dailycashflow.data.model.SummaryResponse
 import com.yihs.dailycashflow.data.model.Transaction
 import com.yihs.dailycashflow.databinding.FragmentHomeBinding
+import com.yihs.dailycashflow.ui.detail_transaction.DetailTransactionActivity
 import com.yihs.dailycashflow.utils.Constant
 import com.yihs.dailycashflow.utils.Helper
 import com.yihs.dailycashflow.utils.showSnackBar
@@ -304,8 +306,9 @@ class HomeFragment : Fragment() {
 
 
     private fun handleClickItemTransaction(item: Transaction){
-        showSnackBar("clicked item ${item.id}")
-
+        val intent = Intent(requireContext(), DetailTransactionActivity::class.java)
+        intent.putExtra(DetailTransactionActivity.TRANSACTION_ID, item.id)
+        startActivity(intent)
     }
 
 
