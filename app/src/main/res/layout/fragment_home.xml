@@ -23,7 +23,6 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_margin="24dp"
-               android:alpha="0.69"
                app:cardCornerRadius="10dp"
                app:cardElevation="4dp"
                app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +33,7 @@
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:background="@drawable/bg_gradient_card_remaining_balance">
+                   android:background="@drawable/bg_gradient_left_right">
 
                    <androidx.constraintlayout.widget.ConstraintLayout
                        android:id="@+id/layout_card_remaining_balance"
@@ -67,7 +66,7 @@
                            android:layout_width="32dp"
                            android:layout_height="32dp"
                            android:src="@drawable/ic_money"
-                           android:tint="@color/color_icon_card_remaining_balance"
+                           android:tint="?attr/colorIconCardRemainingBalance"
                            app:layout_constraintBottom_toBottomOf="@id/tv_title_remaining_balance"
                            app:layout_constraintEnd_toEndOf="parent"
                            app:layout_constraintStart_toEndOf="@id/tv_title_remaining_balance"
@@ -428,6 +427,7 @@
                        app:layout_constraintStart_toStartOf="parent"
                        app:layout_constraintTop_toTopOf="parent"
                        app:layout_constraintBottom_toTopOf="@id/layout_value_summary"
+                       app:layout_constraintHorizontal_chainStyle="packed"
                        />
 
                    <FrameLayout
@@ -577,10 +577,10 @@
                        android:orientation="horizontal"
                        android:gravity="center_vertical|start"
                        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_summary"
-                       app:layout_constraintStart_toEndOf="@id/guideline_vertical_summary"
-                       app:layout_constraintBottom_toTopOf="@id/layout_label_pie_expense"
-                       app:layout_constraintVertical_chainStyle="packed"
-                       app:layout_constraintEnd_toEndOf="parent">
+                       app:layout_constraintStart_toStartOf="@id/pie_chart_summary"
+                       app:layout_constraintEnd_toEndOf="@id/pie_chart_summary"
+                       app:layout_constraintVertical_chainStyle="packed">
+
 
                        <View
                            android:id="@+id/rectangle_label_pie_chart_income"
@@ -610,6 +610,7 @@
                        android:gravity="center_vertical|start"
                        app:layout_constraintTop_toBottomOf="@id/layout_label_pie_income"
                        app:layout_constraintStart_toStartOf="@id/layout_label_pie_income"
+                       app:layout_constraintEnd_toEndOf="@id/pie_chart_summary"
                        app:layout_constraintBottom_toBottomOf="parent">
 
                        <View

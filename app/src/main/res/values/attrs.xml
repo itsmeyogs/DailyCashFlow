@@ -63,5 +63,15 @@
         <attr name="colorIconIncomeDetailTransaction" format="color"/>
         <attr name="colorIconExpenseDetailTransaction" format="color"/>
 
+
+        <attr name="colorPrimaryAuth" format="color"/>
+        <attr name="colorSecondaryAuth" format="color"/>
+        <attr name="colorActionAuth" format="color"/>
+        <attr name="colorTextActionAuth" format="color"/>
+        <attr name="colorLabelInputAuth" format="color"/>
+        <attr name="colorTextInputAuth" format="color"/>
+        <attr name="backgroundColorInputAuth" format="color"/>
+        <attr name="colorOutlineInputAuth" format="color"/>
+
     </declare-styleable>
 </resources>

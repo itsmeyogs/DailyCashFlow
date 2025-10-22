@@ -69,6 +69,14 @@
         <item name="colorIconIncomeDetailTransaction">@color/color_icon_income_detail_transaction</item>
         <item name="colorIconExpenseDetailTransaction">@color/color_icon_expense_detail_transaction</item>
 
+        <item name="colorPrimaryAuth">@color/color_primary_auth</item>
+        <item name="colorSecondaryAuth">@color/color_secondary_auth</item>
+        <item name="colorActionAuth">@color/color_action_auth</item>
+        <item name="colorTextActionAuth">@color/color_text_action_auth</item>
+        <item name="colorLabelInputAuth">@color/color_label_input_auth</item>
+        <item name="colorTextInputAuth">@color/color_text_input_auth</item>
+        <item name="backgroundColorInputAuth">@color/background_color_input_auth</item>
+        <item name="colorOutlineInputAuth">@color/color_outline_input_auth</item>
 
 
     </style>

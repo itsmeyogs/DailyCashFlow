@@ -10,8 +10,8 @@
 
 
     <!-- card remaining balance   -->
-    <color name="background_color_gradient_start">#48BFE3</color>
-    <color name="background_color_gradient_end">#F4FCFF</color>
+    <color name="background_color_gradient_start">#AD48BFE3</color>
+    <color name="background_color_gradient_end">#ADF4FCFF</color>
     <color name="color_icon_card_remaining_balance">#0D99FF</color>
     <color name="color_title_remaining_balance_card">@color/black</color>
     <color name="color_value_remaining_balance_card">#181BE0</color>
@@ -70,6 +70,15 @@
     <color name="color_icon_expense_detail_transaction">@color/color_icon_card_expense</color>
     <color name="background_color_card_detail_transaction">#C7C7C7</color>
 
+
+    <color name="color_primary_auth">@color/black</color>
+    <color name="color_secondary_auth">#605F5F</color>
+    <color name="color_action_auth">#0D99FF</color>
+    <color name="color_text_action_auth">@color/white</color>
+    <color name="color_label_input_auth">#555555</color>
+    <color name="color_text_input_auth">#848484</color>
+    <color name="background_color_input_auth">@color/white</color>
+    <color name="color_outline_input_auth">#BCBABA</color>
 
 
 
