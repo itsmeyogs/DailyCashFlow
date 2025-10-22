@@ -23,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
             insets
         }
 
@@ -58,15 +58,17 @@ class RegisterActivity : AppCompatActivity() {
 
 
     private fun onSignUpClicked(){
-        binding.btnSignUp.setOnClickListener {
-            val name = binding.etName.text.toString().trim()
-            val email = binding.etEmail.text.toString().trim()
-            val password = binding.etPassword.text.toString().trim()
+        binding.apply {
+            btnRegister.setOnClickListener {
+                val name = editTextName.text.toString().trim()
+                val email = editTextEmail.text.toString().trim()
+                val password = editTextPassword.text.toString().trim()
 
-            if(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()){
-                viewModel.register(name, email, password)
-            }else{
-                showSnackBar(getString(R.string.please_fill_all_fields))
+                if(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()){
+                    viewModel.register(name, email, password)
+                }else{
+                    showSnackBar(getString(R.string.please_fill_all_fields))
+                }
             }
         }
     }
@@ -76,17 +78,17 @@ class RegisterActivity : AppCompatActivity() {
         binding.apply {
             if(isShow){
                 loadingIndicator.visibility = View.VISIBLE
-                btnSignUp.visibility = View.INVISIBLE
+                btnRegister.visibility = View.INVISIBLE
             }else{
                 loadingIndicator.visibility = View.INVISIBLE
-                btnSignUp.visibility = View.VISIBLE
+                btnRegister.visibility = View.VISIBLE
             }
         }
     }
 
 
     private fun onLoginClicked(){
-        binding.btnLogin.setOnClickListener {
+        binding.btnLoginNow.setOnClickListener {
             finish()
         }
     }
