@@ -1,6 +1,6 @@
 package com.yihs.dailycashflow.utils
 
-import com.yihs.dailycashflow.data.model.RangeDateFilter
+import com.yihs.dailycashflow.data.model.DropDownItemModel
 
 class Constant {
     companion object{
@@ -21,10 +21,16 @@ class Constant {
 
 
         val filterRangeDateOptions = listOf(
-            RangeDateFilter("all", "Semua"),
-            RangeDateFilter("daily", "Hari ini"),
-            RangeDateFilter("weekly", "Minggu ini"),
-            RangeDateFilter("monthly", "Bulan Ini")
+            DropDownItemModel("all", "Semua"),
+            DropDownItemModel("daily", "Hari ini"),
+            DropDownItemModel("weekly", "Minggu ini"),
+            DropDownItemModel("monthly", "Bulan Ini")
+        )
+
+        val filterTypeTransactionOptions = listOf(
+            DropDownItemModel("all", "Semua Transaksi"),
+            DropDownItemModel("INCOME", "Pemasukan"),
+            DropDownItemModel("EXPENSE", "Pengeluaran")
         )
 
     }

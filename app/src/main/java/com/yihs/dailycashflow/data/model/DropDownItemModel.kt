@@ -1,6 +1,6 @@
 package com.yihs.dailycashflow.data.model
 
-data class RangeDateFilter(
+data class DropDownItemModel(
     val key:String,
     val value: String
 ){

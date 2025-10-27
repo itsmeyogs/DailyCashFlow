@@ -31,7 +31,9 @@
         <attr name="colorTitleCardSummary" format="color"/>
         <attr name="colorValueIncomeCardSummary" format="color"/>
         <attr name="colorValueExpenseCardSummary" format="color"/>
+        <attr name="colorValueTotalCardSummary" format="color"/>
         <attr name="colorActionCardSummary" format="color"/>
+
         <attr name="colorDefaultPieChart" format="color"/>
         <attr name="colorIncomePieChart" format="color"/>
         <attr name="colorExpensePieChart" format="color"/>
@@ -72,6 +74,16 @@
         <attr name="colorTextInputAuth" format="color"/>
         <attr name="backgroundColorInputAuth" format="color"/>
         <attr name="colorOutlineInputAuth" format="color"/>
+
+        
+
+        <attr name="backgroundColorCardTransaction" format="color"/>
+        <attr name="colorBackgroundSpinnerTypeTransaction" format="color"/>
+        <attr name="colorForegroundSpinnerTypeTransaction" format="color"/>
+        <attr name="colorBackgroundSpinnerFilterRangeTransaction" format="color"/>
+        <attr name="colorForegroundSpinnerFilterRangeTransaction" format="color"/>
+
+
 
     </declare-styleable>
 </resources>

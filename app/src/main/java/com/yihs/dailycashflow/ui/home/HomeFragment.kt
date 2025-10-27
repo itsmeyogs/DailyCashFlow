@@ -20,6 +20,7 @@ import com.yihs.dailycashflow.data.model.SummaryResponse
 import com.yihs.dailycashflow.data.model.Transaction
 import com.yihs.dailycashflow.databinding.FragmentHomeBinding
 import com.yihs.dailycashflow.ui.detail_transaction.DetailTransactionActivity
+import com.yihs.dailycashflow.ui.transaction.TransactionActivity
 import com.yihs.dailycashflow.utils.Constant
 import com.yihs.dailycashflow.utils.Helper
 import com.yihs.dailycashflow.utils.showSnackBar
@@ -54,6 +55,13 @@ class HomeFragment : Fragment() {
         //handle on click item transaction
         homeAdapter.onClickItem = { data ->
             handleClickItemTransaction(data)
+        }
+
+        binding.apply {
+            btnActionTransactionHistory.setOnClickListener {
+                val intent = Intent(requireContext(), TransactionActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         observeDataCashFlowSummary()
@@ -232,10 +240,10 @@ class HomeFragment : Fragment() {
 
         val adapterSpinner = ArrayAdapter(
             requireContext(),
-            R.layout.custom_spinner_selected,
+            R.layout.spinner_selected_summary,
             valuesDropDown
         )
-        adapterSpinner.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
+        adapterSpinner.setDropDownViewResource(R.layout.spinner_dropdown_item_summary)
         spinner.adapter = adapterSpinner
 
         //set default value dropdown to daily

@@ -435,7 +435,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginStart="12dp"
-                       android:background="@drawable/bg_spinner"
+                       android:background="@drawable/bg_spinner_summary_card"
                        app:layout_constraintBottom_toBottomOf="@id/tv_title_summary"
                        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_summary"
                        app:layout_constraintStart_toEndOf="@id/tv_title_summary"
@@ -447,7 +447,7 @@
                            android:layout_height="wrap_content"
                            android:dropDownWidth="wrap_content"
                            android:overlapAnchor="false"
-                           android:popupBackground="@drawable/bg_spinner"
+                           android:popupBackground="@drawable/bg_spinner_summary_card"
                            android:spinnerMode="dropdown" />
                    </FrameLayout>
 

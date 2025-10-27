@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yihs.dailycashflow.data.Result
-import com.yihs.dailycashflow.data.model.RangeDateFilter
+import com.yihs.dailycashflow.data.model.DropDownItemModel
 import com.yihs.dailycashflow.data.model.SummaryResponse
 import com.yihs.dailycashflow.data.model.TransactionResponse
 import com.yihs.dailycashflow.repository.Repository
@@ -14,6 +14,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: Repository) : ViewModel() {
 
+    private val _selectedFilterRangeDate = MutableLiveData(Constant.filterRangeDateOptions.last())
+    val selectedFilterRangeDate: LiveData<DropDownItemModel> = _selectedFilterRangeDate
     private val _transactionHistoryState = MutableLiveData<Result<TransactionResponse>>()
     val transactionHistoryState: MutableLiveData<Result<TransactionResponse>> = _transactionHistoryState
 
@@ -31,7 +33,7 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
             }
         }
     }
-    fun getSummaryTransaction(filterRange: RangeDateFilter){
+    fun getSummaryTransaction(filterRange: DropDownItemModel){
         viewModelScope.launch {
             val range = filterRange.key
             repository.getSummary(range).collect { result ->
@@ -47,13 +49,7 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
             }
         }
     }
-
-
-    //set data filter range default to monthly
-    private val _selectedFilterRangeDate = MutableLiveData(Constant.filterRangeDateOptions.last())
-    val selectedFilterRangeDate: LiveData<RangeDateFilter> = _selectedFilterRangeDate
-
-    fun changeSelectedFilterRangeDate(value :RangeDateFilter){
+    fun changeSelectedFilterRangeDate(value :DropDownItemModel){
         getSummaryTransaction(value)
         _selectedFilterRangeDate.value = value
     }

@@ -80,6 +80,14 @@
     <color name="background_color_input_auth">@color/white</color>
     <color name="color_outline_input_auth">#BCBABA</color>
 
+    <color name="background_color_card_transaction">#E1F8FF</color>
+    <color name="color_background_spinner_type_transaction">#0D99FF</color>
+    <color name="color_foreground_spinner_type_transaction">@color/white</color>
+    <color name="color_background_spinner_filter_range_transaction">#2A3B83</color>
+    <color name="color_foreground_spinner_filter_range_transaction">@color/white</color>
+    <color name="color_value_total_card_summary">#0D99FF</color>
+
+
 
 
 

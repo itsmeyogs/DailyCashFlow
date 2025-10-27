@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DailyCashFlow"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.transaction.TransactionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.detail_transaction.DetailTransactionActivity"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">

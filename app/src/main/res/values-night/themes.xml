@@ -78,6 +78,13 @@
         <item name="backgroundColorInputAuth">@color/background_color_input_auth</item>
         <item name="colorOutlineInputAuth">@color/color_outline_input_auth</item>
 
+        <item name="colorValueTotalCardSummary">@color/color_value_total_card_summary</item>
+        <item name="backgroundColorCardTransaction">@color/background_color_card_transaction</item>
+        <item name="colorBackgroundSpinnerTypeTransaction">@color/color_background_spinner_type_transaction</item>
+        <item name="colorForegroundSpinnerTypeTransaction">@color/color_foreground_spinner_type_transaction</item>
+        <item name="colorBackgroundSpinnerFilterRangeTransaction">@color/color_background_spinner_filter_range_transaction</item>
+        <item name="colorForegroundSpinnerFilterRangeTransaction">@color/color_foreground_spinner_filter_range_transaction</item>
+
 
     </style>
 
