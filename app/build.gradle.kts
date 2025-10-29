@@ -75,6 +75,9 @@ dependencies {
     //pie chart
     implementation(libs.mpandroidchart)
 
+    //paging 3
+    implementation(libs.androidx.paging.runtime.ktx)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -17,6 +18,7 @@ import com.yihs.dailycashflow.databinding.ActivityTransactionBinding
 import com.yihs.dailycashflow.utils.Constant
 import com.yihs.dailycashflow.utils.Helper
 import com.yihs.dailycashflow.utils.showSnackBar
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TransactionActivity : AppCompatActivity() {
@@ -95,7 +97,7 @@ class TransactionActivity : AppCompatActivity() {
             pieChartEntries.add(PieEntry(expense, resources.getString(R.string.expense)))
             pieChartEntries.add(PieEntry(income, resources.getString(R.string.income)))
 
-            colors.add(Helper.getColorFromAttr(this, R.attr.colorExpensePieChart, Color.RED),)
+            colors.add(Helper.getColorFromAttr(this, R.attr.colorExpensePieChart, Color.RED))
             colors.add(Helper.getColorFromAttr(this, R.attr.colorIncomePieChart, Color.GREEN))
 
         }else{
@@ -191,11 +193,13 @@ class TransactionActivity : AppCompatActivity() {
         spinner.adapter = adapterSpinner
 
 
-        viewModel.selectedSpinnerFilterRange.observe(this){item ->
-            val position = valuesDropDown.indexOf(item)
-            if(position != -1) {
-                Log.d("selected range changed", item.value)
-                spinner.setSelection(position)
+        lifecycleScope.launch {
+            viewModel.selectedSpinnerFilterRange.collect { item ->
+                val position = valuesDropDown.indexOf(item)
+                if(position != -1){
+                    Log.d("selected range changed", item.value)
+                    spinner.setSelection(position)
+                }
             }
         }
 
@@ -226,11 +230,13 @@ class TransactionActivity : AppCompatActivity() {
         spinner.adapter = adapterSpinner
 
         //set default value
-        viewModel.selectedSpinnerTypeTransaction.observe(this){ item ->
-            val position = valuesDropDown.indexOf(item)
-            if(position != -1) {
-                Log.d("selected type changed", item.value)
-                spinner.setSelection(position)
+        lifecycleScope.launch {
+            viewModel.selectedSpinnerTypeTransaction.collect { item->
+                val position = valuesDropDown.indexOf(item)
+                if(position != -1){
+                    Log.d("selected type changed", item.value)
+                    spinner.setSelection(position)
+                }
             }
         }
 

@@ -40,4 +40,11 @@ interface ApiService {
         @Query("range") range: String,
     ) : Response<SummaryResponse>
 
+    @GET("cashflow")
+    suspend fun getTransactionPaging(
+        @Query("type") type: String,
+        @Query("range") range: String,
+        @Query("page") page: Int = 1
+    ): TransactionResponse
+
 }
