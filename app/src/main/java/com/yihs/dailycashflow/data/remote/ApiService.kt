@@ -30,9 +30,9 @@ interface ApiService {
 
     @GET("cashflow")
     suspend fun getTransaction(
-        @Query("order_by") orderBy: String,
         @Query("type") type: String,
-        @Query("page") page: Int
+        @Query("range") range: String,
+        @Query("page") page: Int = 1
     ): Response<TransactionResponse>
 
     @GET("cashflow/summary")

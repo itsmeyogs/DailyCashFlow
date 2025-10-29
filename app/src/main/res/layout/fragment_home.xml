@@ -423,7 +423,7 @@
                        android:text="@string/title_summary"
                        android:textColor="?attr/colorTitleCardSummary"
                        android:textSize="14sp"
-                       app:layout_constraintEnd_toStartOf="@id/tv_title_summary"
+                       app:layout_constraintEnd_toStartOf="@id/layout_dropdown_range_date_filter"
                        app:layout_constraintStart_toStartOf="parent"
                        app:layout_constraintTop_toTopOf="parent"
                        app:layout_constraintBottom_toTopOf="@id/layout_value_summary"
@@ -432,9 +432,9 @@
 
                    <FrameLayout
                        android:id="@+id/layout_dropdown_range_date_filter"
-                       android:layout_width="wrap_content"
+                       android:layout_width="0dp"
                        android:layout_height="wrap_content"
-                       android:layout_marginStart="12dp"
+                       android:layout_marginStart="8dp"
                        android:background="@drawable/bg_spinner_summary_card"
                        app:layout_constraintBottom_toBottomOf="@id/tv_title_summary"
                        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_summary"
@@ -566,7 +566,7 @@
                        android:layout_marginBottom="4dp"
                        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_summary"
                        app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toEndOf="@id/layout_dropdown_range_date_filter"
+                       app:layout_constraintStart_toEndOf="@id/guideline_vertical_summary"
                        app:layout_constraintTop_toTopOf="parent" />
 
                    <LinearLayout

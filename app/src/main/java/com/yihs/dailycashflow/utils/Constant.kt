@@ -13,9 +13,6 @@ class Constant {
         const val CATEGORY_TYPE_INCOME = "INCOME"
         const val CATEGORY_TYPE_EXPENSE = "EXPENSE"
 
-        const val ORDER_BY_NEWEST = "newest"
-        const val ORDER_BY_OLDEST = "oldest"
-
         const val RESULT_BODY_NULL = "Response Body null"
         const val RESULT_UNKNOWN_ERROR = "An Unknown error occurred"
 
@@ -28,9 +25,9 @@ class Constant {
         )
 
         val filterTypeTransactionOptions = listOf(
-            DropDownItemModel("all", "Semua Transaksi"),
-            DropDownItemModel("INCOME", "Pemasukan"),
-            DropDownItemModel("EXPENSE", "Pengeluaran")
+            DropDownItemModel(CATEGORY_TYPE_ALL, "Semua Transaksi"),
+            DropDownItemModel(CATEGORY_TYPE_INCOME, "Pemasukan"),
+            DropDownItemModel(CATEGORY_TYPE_EXPENSE, "Pengeluaran")
         )
 
     }

@@ -20,10 +20,11 @@ class Repository(private val apiService: ApiService, private val userPreference:
     fun login(email: String, password: String) = Helper.apiCall { apiService.login(email, password) }
     fun register(name: String, email: String, password: String)  = Helper.apiCall { apiService.register(name, email, password) }
 
-    fun getTransactionDashboard(orderBy: String = Constant.ORDER_BY_NEWEST, type: String = Constant.CATEGORY_TYPE_ALL, page: Int = 1) = Helper.apiCall { apiService.getTransaction(orderBy, type, page) }
+    fun getCashFlowSummary() = Helper.apiCall { apiService.getSummary(Constant.filterRangeDateOptions.last().key) }
 
     fun getSummary(range: String) = Helper.apiCall { apiService.getSummary(range) }
 
-    fun getCashFlowSummary() = Helper.apiCall { apiService.getSummary(Constant.filterRangeDateOptions.last().key) }
+    fun getTransaction(type: String, range: String, page: Int = 1) = Helper.apiCall { apiService.getTransaction(type, range, page) }
+
 
 }

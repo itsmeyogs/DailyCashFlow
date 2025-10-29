@@ -44,7 +44,10 @@ class HomeViewModel(private val repository: Repository) : ViewModel() {
 
     fun getTransactionHistory(){
         viewModelScope.launch {
-            repository.getTransactionDashboard().collect { result ->
+            repository.getTransaction(
+                type = Constant.filterTypeTransactionOptions.first().key,
+                range = Constant.filterRangeDateOptions.first().key,
+            ).collect { result ->
                 _transactionHistoryState.value = result
             }
         }
