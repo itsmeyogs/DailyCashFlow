@@ -8,7 +8,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -25,6 +28,8 @@ class TransactionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTransactionBinding
 
     private val viewModel : TransactionViewModel by viewModel()
+    private lateinit var transactionAdapter : TransactionAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +40,50 @@ class TransactionActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        transactionAdapter = TransactionAdapter()
 
         setUpDropDownTypeTransaction()
         setUpDropDownFilterRangeTransaction()
         observeDataSummary()
+        setUpRVTransaction()
+        observeDataTransaction()
+        observeStateTransaction()
 
 
+    }
+
+    private fun setUpRVTransaction(){
+        binding.rvTransactionHistory.apply {
+            layoutManager = LinearLayoutManager(this@TransactionActivity)
+            adapter = transactionAdapter
+        }
+    }
+
+    private fun observeDataTransaction(){
+        viewModel.transactionPagingData.observe(this@TransactionActivity){data->
+            transactionAdapter.submitData(lifecycle,data)
+        }
+    }
+
+    private fun observeStateTransaction(){
+        lifecycleScope.launch {
+            transactionAdapter.loadStateFlow.collect { loadStates ->
+                binding.apply {
+                    val refreshState = loadStates.refresh
+
+                    loadingIndicatorTransactionHistory.isVisible = refreshState is LoadState.Loading
+
+                    rvTransactionHistory.isVisible = (refreshState is LoadState.NotLoading && transactionAdapter.itemCount > 0)
+                    tvEmptyTransaction.isVisible = (refreshState is LoadState.NotLoading && transactionAdapter.itemCount == 0)
+
+                    if(refreshState is LoadState.Error){
+                        showSnackBar(refreshState.error.message.toString())
+                    }
+
+                }
+            }
+
+        }
     }
 
 

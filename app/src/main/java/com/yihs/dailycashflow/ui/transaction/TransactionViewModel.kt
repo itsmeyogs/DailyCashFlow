@@ -39,39 +39,17 @@ class TransactionViewModel(private val repository: Repository) : ViewModel() {
         repository.getTransactionPaging(typeKey, rangeKey).cachedIn(viewModelScope)
     }.asLiveData()
 
-
-
-
-
-    private val _summaryTransactionState = MutableLiveData<Result<SummaryResponse>>()
-    val summaryTransactionState: LiveData<Result<SummaryResponse>> = _summaryTransactionState
-
-
-//    val transactionPagingData : LiveData<PagingData<Transaction>> = repository.getTransactionPaging()
-
-
-
-    private fun getSummaryTransaction(filterRange: String) {
-        viewModelScope.launch {
-            repository.getSummary(filterRange).collect { item ->
-                _summaryTransactionState.value = item
-            }
-        }
-    }
-
-
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val summaryTransactionState : LiveData<Result<SummaryResponse>> = filters.flatMapLatest { (_, rangeKey) ->
+        repository.getSummary(rangeKey)
+    }.asLiveData()
 
     fun changeSelectedSpinnerFilterRange(value: DropDownItemModel){
         _selectedSpinnerFilterRange.value = value
-        getData()
     }
 
     fun changeSelectedSpinnerTypeTransaction(value: DropDownItemModel){
         _selectedSpinnerTypeTransaction.value = value
-    }
-
-    fun getData(){
-        getSummaryTransaction(selectedSpinnerFilterRange.value.key)
     }
 
 }

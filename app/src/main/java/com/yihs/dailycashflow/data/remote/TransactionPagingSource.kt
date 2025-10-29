@@ -30,7 +30,7 @@ class TransactionPagingSource(
             )
         }catch (e : IOException){
             LoadResult.Error(e)
-        }catch (e: IOException){
+        }catch (e: Exception){
             LoadResult.Error(e)
         }
 
